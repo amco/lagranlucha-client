@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace LaGranLucha.Game
 {
+    [Serializable]
     public class IngredientStep
     {
         #region FIELDS

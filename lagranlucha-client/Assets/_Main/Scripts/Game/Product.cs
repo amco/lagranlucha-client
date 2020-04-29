@@ -4,7 +4,7 @@ using UnityEngine;
 namespace LaGranLucha.Game
 {
     [CreateAssetMenu(menuName = MenuName)]
-    public class Product : MonoBehaviour
+    public class Product : ScriptableObject
     {
         #region FIELDS
 
