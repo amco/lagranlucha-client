@@ -1,3 +1,15 @@
-﻿{
-	"name": "_Main"
+{
+    "name": "_Main",
+    "references": [
+        "GUID:d9f991cbda2ef4603ac43fc3ef359fb4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
