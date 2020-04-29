@@ -1,0 +1,16 @@
+{
+    "name": "DataManager_Editor",
+    "references": [
+        "GUID:d9f991cbda2ef4603ac43fc3ef359fb4"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

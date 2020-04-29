@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d35d4a9b1b4ad48e2aa6161950faa0b1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - toggleButton: {instanceID: 0}
+  - onSprite: {instanceID: 0}
+  - offSprite: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

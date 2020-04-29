@@ -1,0 +1,196 @@
+// VERSIONS LOG //
+
+1.7.8
+New
+- Local notifications
+- Settings toggle
+- Canvas Group extension with functions to show and hide easily
+- Screenshot Taker utility.
+
+Changes
+- Daily reward can give rewards on day 0
+- Added to data manager "HasData"
+- Daily Rewards data is now saved in the Data module.
+- Social Login module no has Unlink methods.
+- ApiManager now calls the onLogout event.
+
+1.7.7
+New
+- Share button
+- Splash module handles events better.
+- Warnings now support Text and TextMeshProUgui.
+- Updated Social Login module to be able to handle account recovery and creation correctly.
+
+Fixes
+- Fixed StorePurchase fail message.
+- Firebase and Facebook plugins reimported to avoid conflicts.
+
+1.7.6
+New
+- Added Facebook SDK
+- Added Firebase SDK
+- Added Analytics Manager
+
+Analytics
+- Now you can send analytics trough Facebook, Firebase and Unity
+
+Fixes
+- Social login had an error when not targeting android
+
+Store
+- Added events for purchase requests and purchase success
+- Added component to reproduce sound after purchase success
+
+Utilities
+- Added a press sound button that works with UI elements and sprites
+- Added a helper for opening external links on TMPro texts
+- Added new behaviour to rate button to open store links when default dialog not avaiable
+
+Localization
+- Added GetTranslation and GetTranslatedObject
+
+1.7.5
+New
+- New Touch Manager that supports click radius and ignoring UI layers.
+- New Camera Scroll that allows to move a Camera like a 2D map.
+
+1.7.4
+Fixed bugs
+- Audio Manager removes every Persistent Audio Source its creates to avoid memory leaks.
+
+1.7.3
+New
+- Splash module updated to contain the new Create For Life standard splash screen.
+- Lives module now saves its data on Data module.
+- Lives module now has a limit for max lives to recover from timer and max lives absolute limit when adding extra lives over the timer limit.
+- Splash has test mode to avoid palying it.
+
+Changes
+- Store Manager can show interstitial ads and the `removed-banners` key was replaced to `removed-ads`.
+- Fixed DataManager Reset key static method.
+
+1.7.2
+New
+- Added RectTransform extension
+- Added Sharing extension
+
+1.7.1
+New
+- Privacy policy prefab added to utilites.
+
+Changes
+- Requester parameter variable typo fixed.
+- APIManager now deletes specific PlayerPrefs keys instead of clearing all of them.
+- GoogleLoginManager now correctly precompiles for iOS.
+- SocialLoginButton now handles the events better.
+
+1.7
+New
+- GoogleLoginManager integrated.
+- SocialLoginManager created to handle Apple and Google logins in a single call.
+
+1.6.7
+New
+- Added an event when Levels were loaded on LevelsManager.
+- LevelsManager supports persistent asynchronous loading.
+
+1.6.6
+New
+- Added string extensions
+- Added enum extensions
+- Added support for crossfade music on AudioManager
+- Added support for persistent sounds on AudioManager
+
+Changes
+- Moved Newtonsoft Json.NET for Unity plugin out of packages for further creation of the CFL Framework package.
+
+1.6.5
+New
+- AudioManager support for sounds cooldown (game no longer plays the same sound more than once in a close interval).
+- Rate app button.
+- Open external link button.
+- Localized store prize.
+
+Changes
+- Some store elements now don't require a window to work.
+
+Fixed bugs
+- Added Easy Mobile Initializer to StoreManager prefab.
+- Rewarded ads not unregistering to some events.
+
+1.6.4
+DataManager now wraps Experience, Level and Rank to add it correctly on the User and TemporalUser.
+
+1.6.3
+Fixed various bugs
+- ScoreManager now can reset scores and high scores on specific values.
+- Gifts scripts namespaces fixed.
+- AudioToggle is now an abstract class to avoid inspector usage.
+- Fixed sound channel in ToggleSoundMute.
+- Added default value for collecitbles.
+- Added Erase users funcionality to Data Manager inspector.
+- ApiManager now handles onLogout and onAPILoaded events.
+- DataManager can now GetData from external UserData refeences.
+
+1.6.2
+Fixed bugs related to data storage
+- Get data was improved to allow same name hierarchy in dictionary.
+- UserData no longer initializes every field.
+- Fixed set data incorrect condition.
+- Updated Parameters of RequestContent with Spell Battle version.
+- Changed sync flag in DataManager to sync if anything changes not just Data dictionary.
+
+1.6.1
+- Fixed error on dictionary merging in UserData.
+- Added UnprocessableEntity code in HttpResponse.
+- Collectibles module updates when receiving a gift.
+
+1.6
+Friends, Event Codes and Leaderboards modules added.
+
+1.5
+Gift module was added with some improvements to Data dictionaries.
+
+1.4.4
+- DataManager now casts Newtonsoft default Int64 value to Int32.
+- Reset data in DataManager now sets a set value.
+- Collectible script now has internal accesses to avoid calling them from outside the framework.
+- FramerateManager extracted from Quick Pig and added to utilities.
+- CameraLock Horizontal extracted from Building Fight and added to utilities.
+- Transitions removed to add DOTween.
+
+1.4.3
+Banners in store module now has exposed configurations to handle them better.
+
+1.4.2
+Collectibles module now implements the Data module.
+
+1.4.1
+Utilities reorganization of code.
+
+1.4
+The former API submodule User was extracted to handle and store data between the other modules, upgrading it to the Data module, making this new module the base for data storage in the framework and making it obligatory for any module that stores data.
+
+The API module now updates the user data regularly.
+
+The following modules that store data had been updated to use the new Data module:
+- Store
+- Audio
+- Localization
+- Score
+- API
+
+1.3.1
+Levels module was improved by adding save and erase functionality, added capacity to load levels from the persistent data path and removed warnings module from inside the levels manager to handle exceptions instead.
+
+1.3
+Added API module.
+
+1.2
+Added Daily Rewards module.
+
+1.1
+Added Levels module.
+
+1.0
+Includes Lives, Collectibles, Time, Warnings, Store, Audio, Localization, Score, Dashboards and Splash modules.
