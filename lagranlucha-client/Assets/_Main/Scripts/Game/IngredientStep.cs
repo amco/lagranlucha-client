@@ -1,0 +1,23 @@
+﻿using UnityEngine;
+
+namespace LaGranLucha.Game
+{
+    public class IngredientStep
+    {
+        #region FIELDS
+
+        [SerializeField] private Sprite icon = null;
+        [SerializeField] private int preparationTime = 0;
+        [SerializeField] private AudioClip preparationSound = null;
+
+        #endregion
+
+        #region PROPERTIES
+
+        public Sprite Icon { get => icon; }
+        public int PreparationTime { get => preparationTime; }
+        public AudioClip PreparationSound { get => preparationSound; }
+
+        #endregion
+    }
+}
