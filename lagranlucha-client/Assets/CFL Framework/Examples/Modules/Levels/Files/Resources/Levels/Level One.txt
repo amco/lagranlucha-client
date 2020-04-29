@@ -1,0 +1,17 @@
+{
+    "id": 0,
+    "name": "One",
+    "tag": "Default",
+    "description": "I am level one.",
+    "difficulty": "Easy",
+    "objectives":
+    {
+      "Low": 1000,
+      "High": 2000
+    },
+    "owner": "CFL",
+    "icon": "Test",
+    "sprite": "Test",
+    "video": "Test",
+    "data": "Test"
+}

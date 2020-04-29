@@ -1,0 +1,19 @@
+{
+    "name": "EasyMobilePro_Tests",
+    "references": [
+        "GUID:7ecd1e09dc6764cc58cc18c761d4e485",
+        "GUID:89def04bc47ba4826803c4ba7604ff0e",
+        "GUID:7e2d51c55db6e43ac92d81df91868127"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

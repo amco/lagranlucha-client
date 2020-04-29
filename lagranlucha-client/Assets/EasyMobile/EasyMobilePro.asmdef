@@ -1,0 +1,16 @@
+{
+    "name": "EasyMobilePro",
+    "references": [
+        "GUID:89def04bc47ba4826803c4ba7604ff0e",
+        "GUID:923604f7886be406f9bd5d8c793d27ca"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
