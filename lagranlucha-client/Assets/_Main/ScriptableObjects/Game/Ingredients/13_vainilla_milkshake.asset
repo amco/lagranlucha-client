@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 13_vainilla_milkshake
   m_EditorClassIdentifier: 
   ingredientSteps:
-  - icon: {fileID: 0}
+  - icon: {fileID: 21300000, guid: f4d56a46fbb8c4eb0a3fbed23e787792, type: 3}
     preparationTime: 0.5
     preparationSound: {fileID: 0}
   gameImage: {fileID: 0}

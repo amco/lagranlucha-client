@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 15_soda
   m_EditorClassIdentifier: 
   ingredientSteps:
-  - icon: {fileID: 0}
+  - icon: {fileID: 21300000, guid: e2712db757c2f4d15b080ab05b8cce6b, type: 3}
     preparationTime: 0.5
     preparationSound: {fileID: 0}
   gameImage: {fileID: 0}

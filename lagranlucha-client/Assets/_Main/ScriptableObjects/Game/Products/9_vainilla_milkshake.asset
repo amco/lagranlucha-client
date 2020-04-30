@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ad0c68107b1426fbb9db58306d650c, type: 3}
   m_Name: 9_vainilla_milkshake
   m_EditorClassIdentifier: 
-  ingredients: []
+  ingredients:
+  - {fileID: 11400000, guid: e0c9b48197f61495e89351fff140e9e2, type: 2}
