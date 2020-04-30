@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ad0c68107b1426fbb9db58306d650c, type: 3}
   m_Name: 1_pura_lucha
   m_EditorClassIdentifier: 
+  name: Pura Lucha
   ingredients:
   - {fileID: 11400000, guid: 59d0369508e154f13ad32240f022dd18, type: 2}
   - {fileID: 11400000, guid: 15d4ce9af9a7e4c81a3e1e3223fe785a, type: 2}

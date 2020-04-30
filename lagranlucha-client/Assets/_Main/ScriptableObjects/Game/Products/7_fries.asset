@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ad0c68107b1426fbb9db58306d650c, type: 3}
   m_Name: 7_fries
   m_EditorClassIdentifier: 
+  name: Papas
   ingredients:
   - {fileID: 11400000, guid: 151812d31ddcd4bfabe924176458198a, type: 2}

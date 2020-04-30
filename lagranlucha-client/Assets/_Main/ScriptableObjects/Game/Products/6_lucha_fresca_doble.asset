@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ad0c68107b1426fbb9db58306d650c, type: 3}
   m_Name: 6_lucha_fresca_doble
   m_EditorClassIdentifier: 
+  name: Lucha Fresca Doble
   ingredients:
   - {fileID: 11400000, guid: 085489b4aabf04e37bd5c212d48b7803, type: 2}
   - {fileID: 11400000, guid: 9632833000fbd4e658e6a8e78072e89d, type: 2}

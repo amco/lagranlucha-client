@@ -2,12 +2,15 @@
 using UnityEngine.UI;
 
 using DG.Tweening;
+using Zenject;
 
 namespace LaGranLucha.Game
 {
     public class IngredientButton : MonoBehaviour
     {
         #region FIELDS
+
+        [Inject] private OrderManager orderManager = null;
 
         [SerializeField] private Ingredient ingredient = null;
         [SerializeField] private Image icon = null;
@@ -48,6 +51,7 @@ namespace LaGranLucha.Game
 
         private void SendIngredient()
         {
+            orderManager.SendIngredient(ingredient);
             step = 0;
         }
 
@@ -58,7 +62,7 @@ namespace LaGranLucha.Game
 
         private void SetGraphics()
         {
-            if (icon.sprite == null || ingredient == null)
+            if (icon == null || ingredient == null)
                 return;
 
             icon.sprite = ingredient.IngredientSteps[step].Icon;

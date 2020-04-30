@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ad0c68107b1426fbb9db58306d650c, type: 3}
   m_Name: 10_soda
   m_EditorClassIdentifier: 
+  name: Refresco
   ingredients:
   - {fileID: 11400000, guid: 61b44ee710f3d45cea75d2a3156673da, type: 2}
