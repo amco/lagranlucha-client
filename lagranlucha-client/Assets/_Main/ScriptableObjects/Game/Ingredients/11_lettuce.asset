@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523989cedd3df452ba0c7f3b8be74ad6, type: 3}
   m_Name: 11_lettuce
   m_EditorClassIdentifier: 
-  ingredientSteps: []
-  gameImage: {fileID: 0}
+  ingredientSteps:
+  - icon: {fileID: 21300000, guid: 301a5e0b3a7aa46e6905819f44dbb244, type: 3}
+    preparationTime: 0.5
+    preparationSound: {fileID: 0}
+  - icon: {fileID: 21300000, guid: 301a5e0b3a7aa46e6905819f44dbb244, type: 3}
+    preparationTime: 0.5
+    preparationSound: {fileID: 0}
+  gameImage: {fileID: 21300000, guid: 8c5512ddc38c84407a6e42ec6c207fa8, type: 3}

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523989cedd3df452ba0c7f3b8be74ad6, type: 3}
   m_Name: 13_vainilla_milkshake
   m_EditorClassIdentifier: 
-  ingredientSteps: []
+  ingredientSteps:
+  - icon: {fileID: 0}
+    preparationTime: 0.5
+    preparationSound: {fileID: 0}
   gameImage: {fileID: 0}

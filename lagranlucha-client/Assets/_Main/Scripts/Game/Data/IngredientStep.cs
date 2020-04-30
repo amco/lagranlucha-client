@@ -9,7 +9,7 @@ namespace LaGranLucha.Game
         #region FIELDS
 
         [SerializeField] private Sprite icon = null;
-        [SerializeField] private int preparationTime = 0;
+        [SerializeField] private float preparationTime = 0.2f;
         [SerializeField] private AudioClip preparationSound = null;
 
         #endregion
@@ -17,7 +17,7 @@ namespace LaGranLucha.Game
         #region PROPERTIES
 
         public Sprite Icon { get => icon; }
-        public int PreparationTime { get => preparationTime; }
+        public float PreparationTime { get => preparationTime; }
         public AudioClip PreparationSound { get => preparationSound; }
 
         #endregion
