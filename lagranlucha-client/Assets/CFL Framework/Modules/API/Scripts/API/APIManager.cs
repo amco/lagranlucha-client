@@ -86,7 +86,7 @@ namespace CFLFramework.API
         {
             yield return new WaitForSeconds(synchronizationInterval);
 
-            if (dataManager.IsSynchronizationPending)
+            if (dataManager.IsSynchronizationPending && IsLoggedIn)
             {
                 synching = true;
                 SynchronizeUser(dataManager.TemporalUser, SynchronizationAttempt);
