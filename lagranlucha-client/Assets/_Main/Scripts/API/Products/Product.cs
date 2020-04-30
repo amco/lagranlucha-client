@@ -1,6 +1,6 @@
 ﻿namespace LaGranLucha.API
 {
-    public class Product
+    public abstract class Product
     {
         #region PROPERTIES
 
