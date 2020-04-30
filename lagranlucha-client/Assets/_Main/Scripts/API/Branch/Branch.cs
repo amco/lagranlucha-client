@@ -1,18 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
-public class Branch : MonoBehaviour
+using Newtonsoft.Json;
+
+namespace LaGranLucha.API
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Branch
     {
-        
-    }
+        #region FIELDS
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private const string OpenAtBackend = "open_at";
+        private const string CloseAtBackend = "close_at";
+
+        #endregion
+
+        #region PROPERTIES
+
+        public int Id { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
+        [JsonProperty(OpenAtBackend)] public TimeSpan OpenAt { get; set; }
+        [JsonProperty(CloseAtBackend)] public TimeSpan CloseAt { get; set; }
+
+        #endregion
     }
 }
