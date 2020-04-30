@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 9_tomato
   m_EditorClassIdentifier: 
   ingredientSteps:
-  - icon: {fileID: 21300000, guid: 116e82a14f0f24d228a3cd4f53265e3e, type: 3}
+  - icon: {fileID: 21300000, guid: ad2b2e36cbd4045ec82ebc701781cc59, type: 3}
     preparationTime: 0.5
     preparationSound: {fileID: 0}
   - icon: {fileID: 21300000, guid: 116e82a14f0f24d228a3cd4f53265e3e, type: 3}

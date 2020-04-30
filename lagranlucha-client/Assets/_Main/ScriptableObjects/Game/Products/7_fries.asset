@@ -15,3 +15,5 @@ MonoBehaviour:
   name: Papas
   ingredients:
   - {fileID: 11400000, guid: 151812d31ddcd4bfabe924176458198a, type: 2}
+  coins: 3
+  discount: 0.3

@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: 12_fries
   m_EditorClassIdentifier: 
   ingredientSteps:
-  - icon: {fileID: 21300000, guid: b58301502f2064e0da0929e6e8735171, type: 3}
+  - icon: {fileID: 21300000, guid: 3a149a36a0fc840a49faebd3a055ab7f, type: 3}
+    preparationTime: 0.5
+    preparationSound: {fileID: 0}
+  - icon: {fileID: 21300000, guid: 30062a64af9e8484482b27b252a1eb6c, type: 3}
+    preparationTime: 0.5
+    preparationSound: {fileID: 0}
+  - icon: {fileID: 21300000, guid: 76bf1f180c78a464fade8b487fbd51f2, type: 3}
     preparationTime: 0.5
     preparationSound: {fileID: 0}
   - icon: {fileID: 21300000, guid: b58301502f2064e0da0929e6e8735171, type: 3}
     preparationTime: 0.5
     preparationSound: {fileID: 0}
-  - icon: {fileID: 21300000, guid: b58301502f2064e0da0929e6e8735171, type: 3}
-    preparationTime: 0.5
-    preparationSound: {fileID: 0}
-  - icon: {fileID: 21300000, guid: b58301502f2064e0da0929e6e8735171, type: 3}
-    preparationTime: 0.5
-    preparationSound: {fileID: 0}
-  gameImage: {fileID: 0}
+  gameImage: {fileID: 21300000, guid: bfdec0fae3ba3494187609c3800a1b34, type: 3}

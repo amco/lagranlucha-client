@@ -12,6 +12,8 @@ namespace LaGranLucha.Game
 
         [SerializeField] private new string name = null;
         [SerializeField] private List<Ingredient> ingredients = null;
+        [SerializeField] private int coins = 0;
+        [SerializeField] private float discount = 0;
 
         #endregion
 
@@ -19,6 +21,8 @@ namespace LaGranLucha.Game
 
         public string Name { get => name; }
         public List<Ingredient> Ingredients { get => ingredients; }
+        public int Coins { get => coins; }
+        public float Discount { get => discount; }
 
         #endregion
     }

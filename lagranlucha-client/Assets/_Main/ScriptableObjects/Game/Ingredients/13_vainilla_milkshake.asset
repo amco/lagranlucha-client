@@ -16,4 +16,4 @@ MonoBehaviour:
   - icon: {fileID: 21300000, guid: f4d56a46fbb8c4eb0a3fbed23e787792, type: 3}
     preparationTime: 0.5
     preparationSound: {fileID: 0}
-  gameImage: {fileID: 0}
+  gameImage: {fileID: 21300000, guid: 1c31ffb6656c0422287946db45156c2c, type: 3}

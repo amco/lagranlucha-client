@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 5_meat
   m_EditorClassIdentifier: 
   ingredientSteps:
-  - icon: {fileID: 21300000, guid: 441b24e5fbea74fc79990c8d1e935402, type: 3}
+  - icon: {fileID: 21300000, guid: 25d28a65621a84a0a9aa6ab0b1bf5523, type: 3}
     preparationTime: 0.5
     preparationSound: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 441b24e5fbea74fc79990c8d1e935402, type: 3}
+  - icon: {fileID: 21300000, guid: 568ed63c178434493bdc14b5706ce741, type: 3}
     preparationTime: 0.5
     preparationSound: {fileID: 0}
   - icon: {fileID: 21300000, guid: 441b24e5fbea74fc79990c8d1e935402, type: 3}

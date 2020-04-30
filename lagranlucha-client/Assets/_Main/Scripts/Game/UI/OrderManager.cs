@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
@@ -11,18 +12,31 @@ namespace LaGranLucha.Game
 
         private const string OneProductFormat = "{0}";
         private const string TwoProductsFormat = "{0} y {1}";
-        private const string ThreeProductsFormat = "{0} con {1} y {2}";
+        private const string ThreeProductsFormat = "Combo";
 
         private static readonly string[] ProductNameFormats = new string[] { string.Empty, OneProductFormat, TwoProductsFormat, ThreeProductsFormat };
 
         [SerializeField] private Order[] possibleOrders = null;
         [SerializeField] private ShownIngredient[] shownIngredients = null;
         [SerializeField] private TMP_Text shownName = null;
+        [SerializeField] private NumberCounter coins = null;
+        [SerializeField] private NumberCounter discount = null;
+
 
         private Product hamburguer = null;
         private Product fries = null;
         private Product drink = null;
         private int step = 0;
+
+        #endregion
+
+        #region EVENTS
+
+        public event Action<Ingredient> onHamburguerIngredientSubmit;
+        public event Action<Ingredient> onFriesIngredientSubmit;
+        public event Action<Ingredient> onDrinkIngredientSubmit;
+        public event Action onOrderCompleted;
+        public event Action onNewOrderStart;
 
         #endregion
 
@@ -54,6 +68,7 @@ namespace LaGranLucha.Game
             step = 0;
             SetGraphics();
             SetName();
+            onNewOrderStart?.Invoke();
         }
 
         private void SetName()
@@ -74,16 +89,50 @@ namespace LaGranLucha.Game
         public void SendIngredient(Ingredient ingredient)
         {
             if (ingredient == GetIngredient(step))
+            {
+                if (step < HamburgerIngredientsCount)
+                    onHamburguerIngredientSubmit(ingredient);
+                else if (step < HamburgerIngredientsCount + FriesIngredientsCount)
+                    onFriesIngredientSubmit(ingredient);
+                else if (step < HamburgerIngredientsCount + FriesIngredientsCount + DrinkIngredientsCount)
+                    onDrinkIngredientSubmit(ingredient);
+
                 NextStep();
+            }
         }
 
         private void NextStep()
         {
             step++;
             SetGraphics();
-
             if (OrderComplete)
+            {
+                onOrderCompleted?.Invoke();
+                int coinsIncrease = 0;
+                float discountIncrease = 0;
+
+                if (HaveHamburger)
+                {
+                    coinsIncrease += hamburguer.Coins;
+                    discountIncrease += hamburguer.Discount;
+                }
+
+                if (HaveFries)
+                {
+                    coinsIncrease += fries.Coins;
+                    discountIncrease += fries.Discount;
+                }
+
+                if (HaveDrink)
+                {
+                    coinsIncrease += drink.Coins;
+                    discountIncrease += drink.Discount;
+                }
+
+                coins.Increase(coinsIncrease);
+                discount.Increase(discountIncrease);
                 Invoke(nameof(NewOrder), 1f);
+            }
         }
 
         private void SetGraphics()
@@ -97,15 +146,15 @@ namespace LaGranLucha.Game
 
         private Ingredient GetIngredient(int step)
         {
-            if (hamburguer != null && hamburguer.Ingredients.Count > step)
+            if (HamburgerIngredientsCount > step)
                 return hamburguer.Ingredients[step];
 
             step -= HamburgerIngredientsCount;
-            if (fries != null && fries.Ingredients.Count > step)
+            if (FriesIngredientsCount > step)
                 return fries.Ingredients[step];
 
             step -= FriesIngredientsCount;
-            if (drink != null && drink.Ingredients.Count > step)
+            if (DrinkIngredientsCount > step)
                 return drink.Ingredients[step];
 
             return null;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 11_lettuce
   m_EditorClassIdentifier: 
   ingredientSteps:
-  - icon: {fileID: 21300000, guid: 301a5e0b3a7aa46e6905819f44dbb244, type: 3}
+  - icon: {fileID: 21300000, guid: ce772c315c30f490ab4f50dee45f3255, type: 3}
     preparationTime: 0.5
     preparationSound: {fileID: 0}
   - icon: {fileID: 21300000, guid: 301a5e0b3a7aa46e6905819f44dbb244, type: 3}
