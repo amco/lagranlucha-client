@@ -19,7 +19,7 @@ namespace LaGranLucha.Managers
             if (!response.Succeeded)
                 return;
 
-            foreach (Food food in apiManager.Foods)
+            foreach (Food food in laGranLuchaManager.Foods)
                 foreach (Variant variant in food.Variants)
                 Instantiate<ProductHandler>(productPrefab, productsContainer).Initialize(variant);
         }

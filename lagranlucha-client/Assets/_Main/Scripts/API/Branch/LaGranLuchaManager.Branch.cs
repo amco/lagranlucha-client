@@ -6,7 +6,7 @@ using CFLFramework.Utilities.Save;
 
 namespace LaGranLucha.API
 {
-    public partial class LGL_APIManager
+    public partial class LaGranLuchaManager
     {
         #region FIELDS
 

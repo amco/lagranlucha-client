@@ -6,7 +6,7 @@ using CFLFramework.API;
 
 namespace LaGranLucha.API
 {
-    public partial class LGL_APIManager : MonoBehaviour
+    public partial class LaGranLuchaManager : MonoBehaviour
     {
         #region FIELDS
 

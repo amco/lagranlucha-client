@@ -13,7 +13,7 @@ namespace LaGranLucha.Managers
     {
         #region FIELDS
 
-        [Inject] private LGL_APIManager apiManager;
+        [Inject] private LaGranLuchaManager laGranLuchaManager;
         [Inject] private TimeManager timeManager;
 
         [SerializeField] private BranchHandler branchPrefab;
@@ -35,7 +35,7 @@ namespace LaGranLucha.Managers
 
         private void GetBranches()
         {
-            apiManager.GetBranches(OnGetBranches);
+            laGranLuchaManager.GetBranches(OnGetBranches);
         }
 
         private void OnGetBranches(WebRequestResponse response)
@@ -43,7 +43,7 @@ namespace LaGranLucha.Managers
             if (!response.Succeeded)
                 return;
 
-            foreach (Branch branch in apiManager.Branches)
+            foreach (Branch branch in laGranLuchaManager.Branches)
                 Instantiate<BranchHandler>(branchPrefab, branchesContainer).Initialize(branch);
         }
 

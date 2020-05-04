@@ -12,7 +12,7 @@ namespace LaGranLucha.Managers
     {
         #region FIELDS
 
-        [Inject] protected LGL_APIManager apiManager;
+        [Inject] protected LaGranLuchaManager laGranLuchaManager;
 
         [SerializeField] protected ProductHandler productPrefab;
         [SerializeField] protected Transform productsContainer;
@@ -23,12 +23,12 @@ namespace LaGranLucha.Managers
 
         protected void GetFoods()
         {
-            apiManager.GetFoods(OnGetProducts);
+            laGranLuchaManager.GetFoods(OnGetProducts);
         }
 
         protected void GetDrinks()
         {
-            apiManager.GetDrinks(OnGetProducts);
+            laGranLuchaManager.GetDrinks(OnGetProducts);
         }
 
         protected abstract void OnGetProducts(WebRequestResponse response);
