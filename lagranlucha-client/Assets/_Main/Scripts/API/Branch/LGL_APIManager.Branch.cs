@@ -26,8 +26,8 @@ namespace LaGranLucha.API
 
         public void GetBranches(UnityAction<WebRequestResponse> response)
         {
-            List<Branch> branches = SaveLoad.LoadNewtonsoftJsonFromStreamingAssets<List<Branch>>(FakeBranchesJson);
-            apiManager.SendFakeRequestSucceded(branches, (webResponse => PopulateList(ref branches, webResponse)) + response);
+            List<Branch> jsonBranches = SaveLoad.LoadNewtonsoftJsonFromStreamingAssets<List<Branch>>(FakeBranchesJson);
+            apiManager.SendFakeRequestSucceded(jsonBranches, (webResponse => PopulateList(ref branches, webResponse)) + response);
         }
 
         #endregion

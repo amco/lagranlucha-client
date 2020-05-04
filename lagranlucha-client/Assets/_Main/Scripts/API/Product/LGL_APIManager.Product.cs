@@ -29,14 +29,14 @@ namespace LaGranLucha.API
 
         public void GetFoods(UnityAction<WebRequestResponse> response)
         {
-            List<Food> foods = SaveLoad.LoadNewtonsoftJsonFromStreamingAssets<List<Food>>(FakeFoodsJson);
-            apiManager.SendFakeRequestSucceded(foods, (webResponse => PopulateList(ref foods, webResponse)) + response);
+            List<Food> jsonFoods = SaveLoad.LoadNewtonsoftJsonFromStreamingAssets<List<Food>>(FakeFoodsJson);
+            apiManager.SendFakeRequestSucceded(jsonFoods, (webResponse => PopulateList(ref foods, webResponse)) + response);
         }
 
         public void GetDrinks(UnityAction<WebRequestResponse> response)
         {
-            List<Drink> drinks = SaveLoad.LoadNewtonsoftJsonFromStreamingAssets<List<Drink>>(FakeDrinksJson);
-            apiManager.SendFakeRequestSucceded(drinks, (webResponse => PopulateList(ref drinks, webResponse)) + response);
+            List<Drink> jsonDrinks = SaveLoad.LoadNewtonsoftJsonFromStreamingAssets<List<Drink>>(FakeDrinksJson);
+            apiManager.SendFakeRequestSucceded(jsonDrinks, (webResponse => PopulateList(ref drinks, webResponse)) + response);
         }
 
         #endregion
