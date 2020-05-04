@@ -12,11 +12,5 @@ You will need the following things properly installed on your computer.
 ## Plugins used
 
 Plugins integrated into this project
-
-* [Zenject](https://github.com/modesttree/Zenject) ([license](https://github.com/modesttree/Zenject/blob/master/License.md))
-* [Do Tween](http://dotween.demigiant.com/) ([license](http://dotween.demigiant.com/license.php))
-* [TextMesh PRO](https://docs.unity3d.com/Packages/com.unity.textmeshpro@2.0/manual/index.html) ([license](https://docs.unity3d.com/Packages/com.unity.textmeshpro@2.0/license/LICENSE.html))
 * [CFL Framework](https://github.com/amco/hyper-casual-framework) ([License](https://github.com/amco/hyper-casual-framework/blob/1.0/README.md))
-* [Facebook SDK](https://developers.facebook.com/docs/unity) ([License](https://github.com/facebook/facebook-objc-sdk/blob/master/LICENSE))
-* [Firebase Unity SDK](https://firebase.google.com/docs/unity/setup/) ([License](https://firebase.google.com/docs/unity/setup/))
-* [Mobile Console](https://assetstore.unity.com/packages/tools/utilities/mobile-console-108594)
+* [Better Streaming Assets](https://assetstore.unity.com/packages/tools/input-management/better-streaming-assets-103788) ([License](https://github.com/gwiazdorrr/BetterStreamingAssets/blob/master/LICENSE))

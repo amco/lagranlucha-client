@@ -1,4 +1,5 @@
-﻿using UnityEngine.Events;
+﻿using System;
+using UnityEngine.Events;
 
 using NSubstitute;
 using Newtonsoft.Json;
@@ -10,12 +11,12 @@ namespace CFLFramework.API
     {
         #region BEHAVIORS
 
-        public void SendFakeRequestSucceded(System.Object dataResponse, UnityAction<WebRequestResponse> response)
+        public void SendFakeRequestSucceded(Object dataResponse, UnityAction<WebRequestResponse> response)
         {
             requester.SendRequest(this, CreateFakeRequestContent(dataResponse), response);
         }
 
-        private RequestContent CreateFakeRequestContent(System.Object dataResponse)
+        private RequestContent CreateFakeRequestContent(Object dataResponse)
         {
             RequestContent requestContent = new RequestContent(RequestType.Get, string.Empty);
             requestContent.WebRequest = Substitute.For<IWebRequest>();
