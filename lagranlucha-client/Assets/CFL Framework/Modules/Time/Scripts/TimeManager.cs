@@ -49,7 +49,7 @@ namespace CFLFramework.Time
 
         #region BEHAVIORS
 
-        private void Start()
+        private void Awake()
         {
             UpdateTime();
         }
