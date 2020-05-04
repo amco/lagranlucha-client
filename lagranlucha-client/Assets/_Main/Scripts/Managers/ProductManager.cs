@@ -3,6 +3,7 @@
 using Zenject;
 using CFLFramework.API;
 
+using LaGranLucha.UI;
 using LaGranLucha.API;
 
 namespace LaGranLucha.Managers
@@ -12,6 +13,9 @@ namespace LaGranLucha.Managers
         #region FIELDS
 
         [Inject] protected LGL_APIManager apiManager;
+
+        [SerializeField] protected ProductHandler productPrefab;
+        [SerializeField] protected Transform productsContainer;
 
         #endregion
 
