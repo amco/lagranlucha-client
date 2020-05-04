@@ -20,8 +20,8 @@ namespace LaGranLucha.API
 
         #region PROPERTIES
 
-        public Food[] Foods { get => foods == null ? new Food[] { } : foods.ToArray(); }
-        public Drink[] Drinks { get => drinks == null ? new Drink[] { } : drinks.ToArray(); }
+        public List<Food> Foods { get => foods == null ? new List<Food>() : foods; }
+        public List<Drink> Drinks { get => drinks == null ? new List<Drink>() { } : drinks; }
 
         #endregion
 

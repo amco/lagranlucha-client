@@ -18,7 +18,7 @@ namespace LaGranLucha.API
 
         #region PROPERTIES
 
-        public Branch[] Branches { get => branches == null ? new Branch[] { } : branches.ToArray(); }
+        public List<Branch> Branches { get => branches == null ? new List<Branch>() : branches; }
 
         #endregion
 

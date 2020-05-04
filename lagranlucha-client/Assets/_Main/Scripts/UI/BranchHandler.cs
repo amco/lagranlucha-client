@@ -15,7 +15,7 @@ namespace LaGranLucha.UI
         #region FIELDS
 
         private const string TimeFormat = "hh:mm tt";
-        private const string Divider = "-";
+        private const string Divider = " - ";
 
         [Inject] private TimeManager timeManager;
 
