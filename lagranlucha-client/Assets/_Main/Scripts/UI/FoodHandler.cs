@@ -6,15 +6,15 @@ namespace LaGranLucha.UI
     {
         #region FIELDS
 
-        private Food food;
+        private Variant food;
 
         #endregion
 
         #region BEHAVIORS
 
-        public override void Initialize(Product product)
+        public override void Initialize(Variant product)
         {
-            food = (Food)product;
+            food = product;
             SetupUI();
         }
 

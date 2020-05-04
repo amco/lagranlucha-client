@@ -21,7 +21,7 @@ namespace LaGranLucha.UI
 
         #region BEHAVIORS
 
-        public abstract void Initialize(Product product);
+        public abstract void Initialize(Variant variant);
         protected abstract void SetupUI();
 
         #endregion

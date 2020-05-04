@@ -12,9 +12,9 @@ namespace LaGranLucha.UI
 
         #region BEHAVIORS
 
-        public override void Initialize(Product product)
+        public override void Initialize(Variant product)
         {
-            drink = (Variant)product;
+            drink = product;
             SetupUI();
         }
 
