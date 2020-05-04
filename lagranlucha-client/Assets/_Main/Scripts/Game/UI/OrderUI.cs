@@ -29,11 +29,18 @@ namespace LaGranLucha.Game
             orderManager.onFriesIngredientSubmit += SendFriesIngredient;
             orderManager.onDrinkIngredientSubmit += SendDrinkIngredient;
             orderManager.onOrderCompleted += OrderCompleted;
+            orderManager.onHamburguerReset += Resethamburguer;
         }
 
         private void OrderCompleted()
         {
             rectTransform.DOAnchorPosX(Screen.width, 0.5f).SetDelay(1f).SetEase(Ease.InBack).OnComplete(CleanOrder);
+        }
+
+        private void Resethamburguer()
+        {
+            foreach (Transform child in hamburguerContainer)
+                GameObject.Destroy(child.gameObject);
         }
 
         private void CleanOrder()

@@ -906,6 +906,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game
       objectReference: {fileID: 0}
+    - target: {fileID: 3272873268405501029, guid: 0c4616f1ced9c430182576b404d3bb15,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272873268405501029, guid: 0c4616f1ced9c430182576b404d3bb15,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272873268405501029, guid: 0c4616f1ced9c430182576b404d3bb15,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272873268405501029, guid: 0c4616f1ced9c430182576b404d3bb15,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272873268405501029, guid: 0c4616f1ced9c430182576b404d3bb15,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3595807277047505324, guid: 0c4616f1ced9c430182576b404d3bb15,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -17,16 +17,20 @@ namespace LaGranLucha.Game
         private static readonly string[] ProductNameFormats = new string[] { string.Empty, OneProductFormat, TwoProductsFormat, ThreeProductsFormat };
 
         [SerializeField] private Order[] possibleOrders = null;
-        [SerializeField] private ShownIngredient[] shownIngredients = null;
+        [SerializeField] private ShownIngredient[] hamburguerIngredients = null;
+        [SerializeField] private ShownIngredient friesIngredient = null;
+        [SerializeField] private ShownIngredient drinkIngredient = null;
         [SerializeField] private TMP_Text shownName = null;
         [SerializeField] private NumberCounter coins = null;
         [SerializeField] private NumberCounter discount = null;
 
-
         private Product hamburguer = null;
         private Product fries = null;
         private Product drink = null;
-        private int step = 0;
+        private int hamburguerStep = 0;
+        private bool completedHamburguer = false;
+        private bool completedFries = false;
+        private bool completedDrink = false;
 
         #endregion
 
@@ -35,6 +39,7 @@ namespace LaGranLucha.Game
         public event Action<Ingredient> onHamburguerIngredientSubmit;
         public event Action<Ingredient> onFriesIngredientSubmit;
         public event Action<Ingredient> onDrinkIngredientSubmit;
+        public event Action onHamburguerReset;
         public event Action onOrderCompleted;
         public event Action onNewOrderStart;
 
@@ -42,7 +47,7 @@ namespace LaGranLucha.Game
 
         #region PROPERTIES
 
-        public bool OrderComplete { get => step >= HamburgerIngredientsCount + FriesIngredientsCount + DrinkIngredientsCount; }
+        public bool OrderComplete { get => completedHamburguer && completedFries && completedDrink; }
         public bool HaveHamburger { get => hamburguer != null; }
         public bool HaveFries { get => fries != null; }
         public bool HaveDrink { get => drink != null; }
@@ -65,7 +70,10 @@ namespace LaGranLucha.Game
             hamburguer = newOrder.Hamburguer.Count > 0 ? newOrder.Hamburguer[UnityEngine.Random.Range(0, newOrder.Hamburguer.Count)] : null;
             fries = newOrder.Fries.Count > 0 ? newOrder.Fries[UnityEngine.Random.Range(0, newOrder.Fries.Count)] : null;
             drink = newOrder.Drink.Count > 0 ? newOrder.Drink[UnityEngine.Random.Range(0, newOrder.Drink.Count)] : null;
-            step = 0;
+            completedHamburguer = !HaveHamburger;
+            completedFries = !HaveFries;
+            completedDrink = !HaveDrink;
+            hamburguerStep = 0;
             SetGraphics();
             SetName();
             onNewOrderStart?.Invoke();
@@ -88,76 +96,109 @@ namespace LaGranLucha.Game
 
         public void SendIngredient(Ingredient ingredient)
         {
-            if (ingredient == GetIngredient(step))
+            if (ingredient == GetFriesIngredient())
             {
-                if (step < HamburgerIngredientsCount)
-                    onHamburguerIngredientSubmit(ingredient);
-                else if (step < HamburgerIngredientsCount + FriesIngredientsCount)
-                    onFriesIngredientSubmit(ingredient);
-                else if (step < HamburgerIngredientsCount + FriesIngredientsCount + DrinkIngredientsCount)
-                    onDrinkIngredientSubmit(ingredient);
-
-                NextStep();
+                onFriesIngredientSubmit(ingredient);
+                completedFries = true;
             }
-        }
+            else if (ingredient == GetDrinkIngredient())
+            {
+                onDrinkIngredientSubmit(ingredient);
+                completedDrink = true;
+            }
+            else if (ingredient == GetHamburguerIngredient(hamburguerStep))
+            {
+                onHamburguerIngredientSubmit(ingredient);
+                hamburguerStep++;
+                if (hamburguerStep >= HamburgerIngredientsCount)
+                    completedHamburguer = true;
+            }
+            else
+            {
+                if (ingredient.IsHamburguerIngredient && !completedHamburguer)
+                    ResetBurguer();
 
-        private void NextStep()
-        {
-            step++;
+                ShowFail();
+            }
+
             SetGraphics();
             if (OrderComplete)
+                CompletedOrder();
+        }
+
+        private void ShowFail()
+        {
+            Debug.Log("Error");
+        }
+
+        private void ResetBurguer()
+        {
+            hamburguerStep = 0;
+            onHamburguerReset?.Invoke();
+        }
+
+        private void CompletedOrder()
+        {
+            onOrderCompleted?.Invoke();
+            int coinsIncrease = 0;
+            float discountIncrease = 0;
+
+            if (HaveHamburger)
             {
-                onOrderCompleted?.Invoke();
-                int coinsIncrease = 0;
-                float discountIncrease = 0;
-
-                if (HaveHamburger)
-                {
-                    coinsIncrease += hamburguer.Coins;
-                    discountIncrease += hamburguer.Discount;
-                }
-
-                if (HaveFries)
-                {
-                    coinsIncrease += fries.Coins;
-                    discountIncrease += fries.Discount;
-                }
-
-                if (HaveDrink)
-                {
-                    coinsIncrease += drink.Coins;
-                    discountIncrease += drink.Discount;
-                }
-
-                coins.Increase(coinsIncrease);
-                discount.Increase(discountIncrease);
-                Invoke(nameof(NewOrder), 1f);
+                coinsIncrease += hamburguer.Coins;
+                discountIncrease += hamburguer.Discount;
             }
+
+            if (HaveFries)
+            {
+                coinsIncrease += fries.Coins;
+                discountIncrease += fries.Discount;
+            }
+
+            if (HaveDrink)
+            {
+                coinsIncrease += drink.Coins;
+                discountIncrease += drink.Discount;
+            }
+
+            coins.Increase(coinsIncrease);
+            discount.Increase(discountIncrease);
+            Invoke(nameof(NewOrder), 1f);
         }
 
         private void SetGraphics()
         {
-            for (int i = 0; i < shownIngredients.Length; i++)
+            for (int i = 0; i < hamburguerIngredients.Length; i++)
             {
-                Ingredient ingredient = GetIngredient(step + i);
-                shownIngredients[i].SetIngredient(ingredient);
+                Ingredient ingredient = GetHamburguerIngredient(hamburguerStep + i);
+                hamburguerIngredients[i].SetIngredient(ingredient);
             }
+
+            friesIngredient.SetIngredient(GetFriesIngredient());
+            drinkIngredient.SetIngredient(GetDrinkIngredient());
         }
 
-        private Ingredient GetIngredient(int step)
+        private Ingredient GetHamburguerIngredient(int step)
         {
-            if (HamburgerIngredientsCount > step)
-                return hamburguer.Ingredients[step];
+            if (!HaveHamburger || step >= hamburguer.Ingredients.Count)
+                return null;
+            return hamburguer.Ingredients[step];
+        }
 
-            step -= HamburgerIngredientsCount;
-            if (FriesIngredientsCount > step)
-                return fries.Ingredients[step];
+        private Ingredient GetFriesIngredient()
+        {
+            if (!HaveFries || completedFries)
+                return null;
 
-            step -= FriesIngredientsCount;
-            if (DrinkIngredientsCount > step)
-                return drink.Ingredients[step];
+            return fries.Ingredients[default(int)];
+        }
 
-            return null;
+        private Ingredient GetDrinkIngredient()
+        {
+            if (!HaveDrink || completedDrink)
+                return null;
+
+            return drink.Ingredients[default(int)];
         }
 
         #endregion

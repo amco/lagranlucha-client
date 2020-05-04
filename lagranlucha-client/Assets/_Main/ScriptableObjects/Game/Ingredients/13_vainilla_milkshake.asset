@@ -17,3 +17,4 @@ MonoBehaviour:
     preparationTime: 0.5
     preparationSound: {fileID: 0}
   gameImage: {fileID: 21300000, guid: 1c31ffb6656c0422287946db45156c2c, type: 3}
+  isHamburguerIngredient: 0

@@ -6,7 +6,7 @@ namespace LaGranLucha.Game
     {
         #region FIELDS
 
-        [SerializeField] private NumberCounter numberCounter;
+        [SerializeField] private NumberCounter numberCounter = null;
 
         #endregion
 
