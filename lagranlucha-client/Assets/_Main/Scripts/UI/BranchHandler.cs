@@ -54,7 +54,7 @@ namespace LaGranLucha.UI
             string openAt = openTime.ToString(TimeFormat);
             string closeAt = closeTime.ToString(TimeFormat);
             timeText.text = openAt + Divider + closeAt;
-            bool isOpen = TimeSpan.Compare(TimeOfDay, branch.OpenAt) >= 1 && TimeSpan.Compare(TimeOfDay, branch.CloseAt) < -1;
+            bool isOpen = TimeSpan.Compare(TimeOfDay, branch.OpenAt) >= 0 && TimeSpan.Compare(branch.CloseAt, TimeOfDay) == 1;
             selectButton.interactable = isOpen;
         }
 
