@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+using CFLFramework.Utilities.Extensions;
+using DG.Tweening;
+
 namespace LaGranLucha.Game
 {
     public class ShownIngredient : MonoBehaviour
@@ -10,6 +13,7 @@ namespace LaGranLucha.Game
 
         [SerializeField] private Image icon = null;
         [SerializeField] private Image background = null;
+        [SerializeField] private CanvasGroup canvasGroup = null;
 
         private Ingredient ingredient = null;
 
@@ -26,9 +30,27 @@ namespace LaGranLucha.Game
         public void SetIngredient(Ingredient ingredient)
         {
             Ingredient = ingredient;
-            gameObject.SetActive(Ingredient != null);
             if (Ingredient != null)
+            {
                 icon.sprite = Ingredient.IngredientSteps.Last().Icon;
+                Show();
+            }
+            else
+            {
+                Hide();
+            }
+        }
+
+        public void Hide()
+        {
+            canvasGroup.Hide();
+            transform.DOScale(Vector3.zero, 0.5f);
+        }
+
+        public void Show()
+        {
+            canvasGroup.Show();
+            transform.DOScale(Vector3.one, 0.5f);
         }
 
         #endregion

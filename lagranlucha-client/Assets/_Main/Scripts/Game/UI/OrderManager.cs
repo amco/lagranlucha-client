@@ -20,7 +20,7 @@ namespace LaGranLucha.Game
 
         [Inject] private GameManager gameManager = null;
 
-        [SerializeField] private Order[] possibleOrders = null;
+        [SerializeField] private RoundsOrders roundOrder = null;
         [SerializeField] private ShownIngredient[] hamburguerIngredients = null;
         [SerializeField] private ShownIngredient friesIngredient = null;
         [SerializeField] private ShownIngredient drinkIngredient = null;
@@ -79,7 +79,7 @@ namespace LaGranLucha.Game
 
         private void NewOrder()
         {
-            Order newOrder = possibleOrders[UnityEngine.Random.Range(0, possibleOrders.Length)];
+            Order newOrder = roundOrder.NewOrder(gameManager.CurrentRound);
             hamburguer = newOrder.Hamburguer.Count > 0 ? newOrder.Hamburguer[UnityEngine.Random.Range(0, newOrder.Hamburguer.Count)] : null;
             fries = newOrder.Fries.Count > 0 ? newOrder.Fries[UnityEngine.Random.Range(0, newOrder.Fries.Count)] : null;
             drink = newOrder.Drink.Count > 0 ? newOrder.Drink[UnityEngine.Random.Range(0, newOrder.Drink.Count)] : null;

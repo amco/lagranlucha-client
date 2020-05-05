@@ -177,3 +177,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 2107425994949655030}
   background: {fileID: 3078520833362036780}
+  canvasGroup: {fileID: 6518597397504768685}

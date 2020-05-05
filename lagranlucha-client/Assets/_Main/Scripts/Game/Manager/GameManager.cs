@@ -22,7 +22,7 @@ namespace LaGranLucha.Game
 
         #region PROPERTIES
 
-        //public int DrinkIngredientsCount { get => drink != null ? drink.Ingredients.Count : 0; }
+        public int CurrentRound { get => currentRound.IntValue; }
 
         #endregion
 
