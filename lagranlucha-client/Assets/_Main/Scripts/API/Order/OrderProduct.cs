@@ -1,10 +1,18 @@
-﻿namespace LaGranLucha.API
+﻿using Newtonsoft.Json;
+
+namespace LaGranLucha.API
 {
     public class OrderProduct
     {
+        #region FIELDS
+
+        private const string VariantIdBackend = "variant_id";
+
+        #endregion
+
         #region PROPERTIES
 
-        public int VariantId { get; set; }
+        [JsonProperty(VariantIdBackend)] public int VariantId { get; set; }
         public int Amount { get; set; }
 
         #endregion

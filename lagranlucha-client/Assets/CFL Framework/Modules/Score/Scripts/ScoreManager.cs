@@ -13,7 +13,6 @@ namespace CFLFramework.Score
         #region FIELDS
 
         private const string ScoreDataKey = "score_data";
-        private const string ScoreKey = "score";
         private const string HighScoreKey = "high_score";
         private const float DefaultValue = 0;
 
@@ -34,7 +33,7 @@ namespace CFLFramework.Score
 
         public void IncreaseScore(string[] keys, float value)
         {
-            float score = scores.IncreaseValue(keys, ScoreKey, value);
+            float score = scores.IncreaseValue(keys, value);
             scoreUpdated?.Invoke(keys, score);
 
             if (score > GetHighScore(keys, DefaultValue))
@@ -43,7 +42,7 @@ namespace CFLFramework.Score
 
         public void ResetScore(string[] keys, float value = DefaultValue)
         {
-            scores.SetValue(keys, ScoreKey, value);
+            scores.SetValue(keys, value);
             scoreUpdated?.Invoke(keys, value);
 
             if (value != DefaultValue && value > GetHighScore(keys, DefaultValue))
@@ -58,7 +57,7 @@ namespace CFLFramework.Score
 
         public float GetScore(string[] keys)
         {
-            return scores.GetValue<float>(keys, ScoreKey);
+            return scores.GetValue<float>(keys, default(float));
         }
 
         public float GetHighScore(string[] keys, float defaultValue = DefaultValue)

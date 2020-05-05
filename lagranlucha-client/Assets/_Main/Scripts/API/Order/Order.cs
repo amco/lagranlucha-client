@@ -18,7 +18,7 @@ namespace LaGranLucha.API
         public string Type { get; set; }
         public int Id { get; set; }
         [JsonProperty(BranchIdBackend)] public int BranchId { get; set; }
-        [JsonProperty(LineItemsBackend)] public List<OrderProduct> LineItems = new List<OrderProduct>();
+        [JsonProperty(LineItemsBackend)] public List<OrderProduct> LineItems { get; set; } = new List<OrderProduct>();
 
         #endregion
     }

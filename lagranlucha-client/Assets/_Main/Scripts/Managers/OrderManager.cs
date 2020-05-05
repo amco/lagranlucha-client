@@ -17,11 +17,6 @@ namespace LaGranLucha.Managers
 
         #region BEHAVIORS
 
-        private void Start()
-        {
-            
-        }
-
         #endregion
     }
 }
