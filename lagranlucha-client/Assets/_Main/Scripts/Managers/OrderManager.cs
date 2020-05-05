@@ -7,12 +7,6 @@ namespace LaGranLucha.Managers
 {
     public class OrderManager : MonoBehaviour
     {
-        #region FIELDS
-
-        [SerializeField] private int taxRate = 16;
-
-        #endregion
-
         #region PROPERTIES
 
         public List<CartItem> Items { get; private set; } = new List<CartItem>();
@@ -20,6 +14,33 @@ namespace LaGranLucha.Managers
         #endregion
 
         #region BEHAVIORS
+
+        public void CreateOrder()
+        {
+            Order order = new Order();
+            foreach (CartItem item in Items)
+            {
+                OrderProduct orderProduct = new OrderProduct();
+                orderProduct.VariantId = item.VariantId;
+                orderProduct.Quantity = item.Quantity;
+                order.LineItems.Add(orderProduct);
+            }
+        }
+
+        public Variant GetProductFromCart(Variant product)
+        {
+            CartItem newItem = new CartItem(product);
+            if (Items.Contains(newItem))
+            {
+                foreach (CartItem item in Items)
+                {
+                    if (item.Equals(newItem))
+                        return item.Product;
+                }
+            }
+
+            return null;
+        }
 
         public void UpdateItem(Variant product, int quantity)
         {
@@ -48,22 +69,13 @@ namespace LaGranLucha.Managers
             }
         }
 
-        public float GetSubtotal()
+        public float GetTotal()
         {
             float subTotal = default(float);
             foreach (CartItem item in Items)
                 subTotal += item.TotalPrice;
 
             return subTotal;
-        }
-
-        public float GetTotal()
-        {
-            float total = default(float);
-            float subTotal = GetSubtotal();
-            float taxAmount = subTotal * (taxRate / 100f);
-            total = subTotal + taxAmount;
-            return total;
         }
 
         private void RemoveItem(Variant product)

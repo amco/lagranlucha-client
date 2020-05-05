@@ -13,7 +13,7 @@ namespace LaGranLucha.API
         #region PROPERTIES
 
         [JsonProperty(VariantIdBackend)] public int VariantId { get; set; }
-        public int Amount { get; set; }
+        public int Quantity { get; set; }
 
         #endregion
     }
