@@ -41,6 +41,13 @@ namespace CFLFramework.Utilities.Extensions
             return dictionary.GetValue<float>(keys, default(float));
         }
 
+        public static float DecreaseValue(this IDictionary<string, object> dictionary, string[] keys, float value)
+        {
+            float currentValue = dictionary.GetValue<float>(keys, default(float));
+            dictionary.SetValue(keys, currentValue - value);
+            return dictionary.GetValue<float>(keys, default(float));
+        }
+
         public static void SetValue(this IDictionary<string, object> dictionary, string[] keys, object newValue)
         {
             for (int i = 0; i < keys.Length - 1; i++)
