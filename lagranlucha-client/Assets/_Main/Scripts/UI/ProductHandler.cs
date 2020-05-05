@@ -16,10 +16,11 @@ namespace LaGranLucha.UI
         private const string PesosSign = "$";
         private const int MaxQuantity = 99;
 
-        [Inject] private OrderManager orderManager;
+        [Inject] private ShoppingCartManager shoppingCart;
 
         [Header("PROPERTIES")]
         [SerializeField] private TextMeshProUGUI nameText;
+        [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private TextMeshProUGUI priceText;
         [SerializeField] private Image previewImage;
 
@@ -50,6 +51,7 @@ namespace LaGranLucha.UI
         private void SetupUI()
         {
             nameText.text = product.Name;
+            descriptionText.text = product.Description;
             priceText.text = PesosSign + product.Price.ToString();
             quantityText.text = quantity.ToString();
         }
@@ -71,7 +73,7 @@ namespace LaGranLucha.UI
         private void UpdateItem()
         {
             quantityText.text = quantity.ToString();
-            orderManager.UpdateItem(product, quantity);
+            shoppingCart.UpdateItem(product, quantity);
         }
 
         #endregion

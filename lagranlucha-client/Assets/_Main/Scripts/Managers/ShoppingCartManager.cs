@@ -1,12 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+using Zenject;
+using CFLFramework.API;
+
 using LaGranLucha.API;
 
 namespace LaGranLucha.Managers
 {
-    public class OrderManager : MonoBehaviour
+    public class ShoppingCartManager : MonoBehaviour
     {
+        #region FIELDS
+
+        [Inject] private BranchManager branchManager;
+        [Inject] private APIManager apiManager;
+
+        #endregion
+
         #region PROPERTIES
 
         public List<CartItem> Items { get; private set; } = new List<CartItem>();
@@ -25,6 +35,9 @@ namespace LaGranLucha.Managers
                 orderProduct.Quantity = item.Quantity;
                 order.LineItems.Add(orderProduct);
             }
+
+            order.BranchId = branchManager.CurrentBranch.Id;
+            apiManager.SendFakeRequestSucceded(order, null);
         }
 
         public Variant GetProductFromCart(Variant product)
