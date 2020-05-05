@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
+using Zenject;
 
 namespace LaGranLucha.Game
 {
@@ -13,8 +14,11 @@ namespace LaGranLucha.Game
         private const string OneProductFormat = "{0}";
         private const string TwoProductsFormat = "{0} y {1}";
         private const string ThreeProductsFormat = "Combo";
-
+        private const float DelayForNewOrder = 1f;
+        private const float DelayForEndRound = 2f;
         private static readonly string[] ProductNameFormats = new string[] { string.Empty, OneProductFormat, TwoProductsFormat, ThreeProductsFormat };
+
+        [Inject] private GameManager gameManager = null;
 
         [SerializeField] private Order[] possibleOrders = null;
         [SerializeField] private ShownIngredient[] hamburguerIngredients = null;
@@ -22,8 +26,10 @@ namespace LaGranLucha.Game
         [SerializeField] private ShownIngredient drinkIngredient = null;
         [SerializeField] private TMP_Text shownName = null;
         [SerializeField] private OrderBar orderBar = null;
+        [SerializeField] private NumberCounter timer = null;
         [SerializeField] private NumberCounter coins = null;
         [SerializeField] private NumberCounter discount = null;
+        [SerializeField] private GameObject currentIngredientArrow = null;
 
         private Product hamburguer = null;
         private Product fries = null;
@@ -55,6 +61,7 @@ namespace LaGranLucha.Game
         public int HamburgerIngredientsCount { get => hamburguer != null ? hamburguer.Ingredients.Count : 0; }
         public int FriesIngredientsCount { get => fries != null ? fries.Ingredients.Count : 0; }
         public int DrinkIngredientsCount { get => drink != null ? drink.Ingredients.Count : 0; }
+        public int TimeRemaining { get => timer.IntValue; }
 
         #endregion
 
@@ -62,7 +69,12 @@ namespace LaGranLucha.Game
 
         private void Start()
         {
-            NewOrder();
+            gameManager.onRoundStart += StartRound;
+        }
+
+        private void StartRound(int round)
+        {
+            Invoke(nameof(NewOrder), DelayForNewOrder);
         }
 
         private void NewOrder()
@@ -71,6 +83,7 @@ namespace LaGranLucha.Game
             hamburguer = newOrder.Hamburguer.Count > 0 ? newOrder.Hamburguer[UnityEngine.Random.Range(0, newOrder.Hamburguer.Count)] : null;
             fries = newOrder.Fries.Count > 0 ? newOrder.Fries[UnityEngine.Random.Range(0, newOrder.Fries.Count)] : null;
             drink = newOrder.Drink.Count > 0 ? newOrder.Drink[UnityEngine.Random.Range(0, newOrder.Drink.Count)] : null;
+            currentIngredientArrow.SetActive(HaveHamburger);
             completedHamburguer = !HaveHamburger;
             completedFries = !HaveFries;
             completedDrink = !HaveDrink;
@@ -141,6 +154,8 @@ namespace LaGranLucha.Game
         private void CompletedOrder()
         {
             onOrderCompleted?.Invoke();
+            shownName.text = string.Empty;
+            currentIngredientArrow.gameObject.SetActive(false);
             int coinsIncrease = 0;
             float discountIncrease = 0;
 
@@ -164,7 +179,15 @@ namespace LaGranLucha.Game
 
             coins.Increase(coinsIncrease);
             discount.Increase(discountIncrease);
-            Invoke(nameof(NewOrder), 1f);
+            if (TimeRemaining > 0)
+                Invoke(nameof(NewOrder), DelayForNewOrder);
+            else
+                Invoke(nameof(EndRound), DelayForEndRound);
+        }
+
+        private void EndRound()
+        {
+            gameManager.EndRound();
         }
 
         private void SetGraphics()
