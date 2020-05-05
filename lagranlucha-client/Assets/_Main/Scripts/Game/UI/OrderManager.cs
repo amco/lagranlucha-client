@@ -21,6 +21,7 @@ namespace LaGranLucha.Game
         [SerializeField] private ShownIngredient friesIngredient = null;
         [SerializeField] private ShownIngredient drinkIngredient = null;
         [SerializeField] private TMP_Text shownName = null;
+        [SerializeField] private OrderBar orderBar = null;
         [SerializeField] private NumberCounter coins = null;
         [SerializeField] private NumberCounter discount = null;
 
@@ -59,7 +60,7 @@ namespace LaGranLucha.Game
 
         #region BEHAVIORS
 
-        private void Awake()
+        private void Start()
         {
             NewOrder();
         }

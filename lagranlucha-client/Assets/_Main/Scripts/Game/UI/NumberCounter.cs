@@ -13,7 +13,11 @@ namespace LaGranLucha.Game
         private const float ScaleAmount = 0.5f;
         private const float ScaleDuration = 0.2f;
 
+        [SerializeField] private string id = "";
         [SerializeField] private float startingValue = 0;
+        [SerializeField] private string preffix = "";
+        [SerializeField] private string format = "{0:0.0}";
+        [SerializeField] private string remove = ".0";
         [SerializeField] private string suffix = "";
 
         private TMP_Text number = null;
@@ -24,6 +28,7 @@ namespace LaGranLucha.Game
         #region PROPERTIES
 
         public float Value { get; private set; }
+        public string ValueString { get => preffix + string.Format(format, Value).Replace(remove, string.Empty) + suffix; }
 
         #endregion
 
@@ -33,12 +38,12 @@ namespace LaGranLucha.Game
         {
             number = GetComponent<TMP_Text>();
             Value = startingValue;
-            number.text = Value.ToString() + suffix;
+            number.text = ValueString;
         }
 
         private void SetUI()
         {
-            number.text = Value.ToString() + suffix;
+            number.text = ValueString;
             if (scaleTween != null)
                 scaleTween.Kill(true);
 
