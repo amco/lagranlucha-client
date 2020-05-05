@@ -9,6 +9,7 @@ namespace LaGranLucha.Game
         #region FIELDS
 
         [SerializeField] private Image icon = null;
+        [SerializeField] private Image background = null;
 
         private Ingredient ingredient = null;
 

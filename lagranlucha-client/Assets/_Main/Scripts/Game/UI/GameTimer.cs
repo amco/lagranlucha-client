@@ -24,15 +24,15 @@ namespace LaGranLucha.Game
             gameManager.onRoundStart += StartTimer;
         }
 
+        private void OnDestroy()
+        {
+            gameManager.onRoundStart -= StartTimer;
+        }
+
         private void StartTimer(int round)
         {
             numberCounter.Reset();
             InvokeRepeating(nameof(SecondPassed), SecondDuration, SecondDuration);
-        }
-
-        private void OnDestroy()
-        {
-            gameManager.onRoundStart -= StartTimer;
         }
 
         private void SecondPassed()
