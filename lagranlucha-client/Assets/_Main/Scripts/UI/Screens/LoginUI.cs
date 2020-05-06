@@ -36,17 +36,23 @@ namespace LaGranLucha.UI
 
         private void LoginWithFacebook()
         {
-
+            OpenHomeScene();
         }
 
         private void LoginWithGoogle()
         {
-
+            OpenHomeScene();
         }
 
         private void LoginWithApple()
         {
+            OpenHomeScene();
+        }
 
+        private void OpenHomeScene()
+        {
+            laGranLuchaManager.OpenHomeScene();
+            gameObject.SetActive(false);
         }
 
         #endregion
