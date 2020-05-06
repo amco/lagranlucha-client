@@ -21,7 +21,7 @@ namespace LaGranLucha.UI
 
         #region BEHAVIORS
 
-        private void Start()
+        private void OnEnable()
         {
             laGranLuchaManager.GetBranches(OnGetBranches);
         }
@@ -40,6 +40,13 @@ namespace LaGranLucha.UI
             laGranLuchaManager.SelectBranch(branchId);
             laGranLuchaManager.OpenShoppingScene();
             gameObject.SetActive(false);
+            RemoveBranches();
+        }
+
+        private void RemoveBranches()
+        {
+            foreach (Transform child in branchesContainer)
+                Destroy(child.gameObject);
         }
 
         #endregion
