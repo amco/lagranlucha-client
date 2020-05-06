@@ -2,7 +2,6 @@
 
 using Zenject;
 using CFLFramework.API;
-using CFLFramework.Time;
 
 using LaGranLucha.UI;
 using LaGranLucha.API;
@@ -14,7 +13,6 @@ namespace LaGranLucha.Managers
         #region FIELDS
 
         [Inject] private LaGranLuchaManager laGranLuchaManager;
-        [Inject] private TimeManager timeManager;
 
         [SerializeField] private BranchHandler branchPrefab;
         [SerializeField] private Transform branchesContainer;
@@ -29,24 +27,14 @@ namespace LaGranLucha.Managers
 
         #region BEHAVIORS
 
-        private void Awake()
+        public void GetBranches()
         {
-            timeManager.onTimeLoaded += GetBranches;
-        }
-
-        private void OnDestroy()
-        {
-            timeManager.onTimeLoaded -= GetBranches;
+            laGranLuchaManager.GetBranches(OnGetBranches);
         }
 
         public void SelectBranch(Branch branch)
         {
             CurrentBranch = branch;
-        }
-
-        private void GetBranches()
-        {
-            laGranLuchaManager.GetBranches(OnGetBranches);
         }
 
         private void OnGetBranches(WebRequestResponse response)
