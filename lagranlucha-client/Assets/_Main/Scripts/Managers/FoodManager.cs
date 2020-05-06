@@ -21,7 +21,7 @@ namespace LaGranLucha.Managers
 
             foreach (Food food in laGranLuchaManager.Foods)
                 foreach (Variant variant in food.Variants)
-                Instantiate<ProductHandler>(productPrefab, productsContainer).Initialize(variant);
+                Instantiate<CartItemHandler>(productPrefab, productsContainer).Initialize(variant);
         }
 
         #endregion

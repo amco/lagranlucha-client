@@ -11,17 +11,17 @@ namespace LaGranLucha.UI
     {
         #region FIELDS
 
-        protected const string PesosSign = "$";
-
+        [Header("PROPERTIES")]
         [SerializeField] protected TextMeshProUGUI nameText;
         [SerializeField] protected TextMeshProUGUI priceText;
         [SerializeField] protected Image previewImage;
+
+        protected Variant product;
 
         #endregion
 
         #region BEHAVIORS
 
-        public abstract void Initialize(Variant variant);
         protected abstract void SetupUI();
 
         #endregion

@@ -21,6 +21,12 @@ namespace LaGranLucha.Managers
 
         #endregion
 
+        #region PROPERTIES
+
+        public Branch CurrentBranch { get; private set; } = null;
+
+        #endregion
+
         #region BEHAVIORS
 
         private void Awake()
@@ -31,6 +37,11 @@ namespace LaGranLucha.Managers
         private void OnDestroy()
         {
             timeManager.onTimeLoaded -= GetBranches;
+        }
+
+        public void SelectBranch(Branch branch)
+        {
+            CurrentBranch = branch;
         }
 
         private void GetBranches()
