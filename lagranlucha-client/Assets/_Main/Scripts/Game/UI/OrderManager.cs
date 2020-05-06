@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
@@ -11,12 +10,8 @@ namespace LaGranLucha.Game
     {
         #region FIELDS
 
-        private const string OneProductFormat = "{0}";
-        private const string TwoProductsFormat = "{0} y {1}";
-        private const string ThreeProductsFormat = "Combo";
-        private const float DelayForNewOrder = 1f;
+        private const float DelayForNewOrder = 1.5f;
         private const float DelayForEndRound = 2f;
-        private static readonly string[] ProductNameFormats = new string[] { string.Empty, OneProductFormat, TwoProductsFormat, ThreeProductsFormat };
 
         [Inject] private GameManager gameManager = null;
 
@@ -25,19 +20,15 @@ namespace LaGranLucha.Game
         [SerializeField] private ShownIngredient friesIngredient = null;
         [SerializeField] private ShownIngredient drinkIngredient = null;
         [SerializeField] private TMP_Text shownName = null;
-        [SerializeField] private OrderBar orderBar = null;
         [SerializeField] private NumberCounter timer = null;
-        [SerializeField] private NumberCounter coins = null;
         [SerializeField] private NumberCounter discount = null;
         [SerializeField] private GameObject currentIngredientArrow = null;
 
-        private Product hamburguer = null;
-        private Product fries = null;
-        private Product drink = null;
         private int hamburguerStep = 0;
         private bool completedHamburguer = false;
         private bool completedFries = false;
         private bool completedDrink = false;
+        private Order order = null;
 
         #endregion
 
@@ -48,19 +39,13 @@ namespace LaGranLucha.Game
         public event Action<Ingredient> onDrinkIngredientSubmit;
         public event Action onHamburguerReset;
         public event Action onOrderCompleted;
-        public event Action onNewOrderStart;
+        public event Action<Order> onNewOrderStart;
 
         #endregion
 
         #region PROPERTIES
 
         public bool OrderComplete { get => completedHamburguer && completedFries && completedDrink; }
-        public bool HaveHamburger { get => hamburguer != null; }
-        public bool HaveFries { get => fries != null; }
-        public bool HaveDrink { get => drink != null; }
-        public int HamburgerIngredientsCount { get => hamburguer != null ? hamburguer.Ingredients.Count : 0; }
-        public int FriesIngredientsCount { get => fries != null ? fries.Ingredients.Count : 0; }
-        public int DrinkIngredientsCount { get => drink != null ? drink.Ingredients.Count : 0; }
         public int TimeRemaining { get => timer.IntValue; }
 
         #endregion
@@ -79,33 +64,16 @@ namespace LaGranLucha.Game
 
         private void NewOrder()
         {
-            Order newOrder = roundOrder.NewOrder(gameManager.CurrentRound);
-            hamburguer = newOrder.Hamburguer.Count > 0 ? newOrder.Hamburguer[UnityEngine.Random.Range(0, newOrder.Hamburguer.Count)] : null;
-            fries = newOrder.Fries.Count > 0 ? newOrder.Fries[UnityEngine.Random.Range(0, newOrder.Fries.Count)] : null;
-            drink = newOrder.Drink.Count > 0 ? newOrder.Drink[UnityEngine.Random.Range(0, newOrder.Drink.Count)] : null;
-            currentIngredientArrow.SetActive(HaveHamburger);
-            completedHamburguer = !HaveHamburger;
-            completedFries = !HaveFries;
-            completedDrink = !HaveDrink;
+            order = roundOrder.NewOrder(gameManager.CurrentRound);
+            order.GetRandomElements();
+            currentIngredientArrow.SetActive(order.HaveHamburger);
+            completedHamburguer = !order.HaveHamburger;
+            completedFries = !order.HaveFries;
+            completedDrink = !order.HaveDrink;
             hamburguerStep = 0;
             SetGraphics();
-            SetName();
-            onNewOrderStart?.Invoke();
-        }
-
-        private void SetName()
-        {
-            List<string> names = new List<string>();
-            if (HaveHamburger)
-                names.Add(hamburguer.Name);
-
-            if (HaveFries)
-                names.Add(fries.Name);
-
-            if (HaveDrink)
-                names.Add(drink.Name);
-
-            shownName.text = string.Format(ProductNameFormats[names.Count], names.ToArray());
+            shownName.text = order.OrderName;
+            onNewOrderStart?.Invoke(order);
         }
 
         public void SendIngredient(Ingredient ingredient)
@@ -124,7 +92,7 @@ namespace LaGranLucha.Game
             {
                 onHamburguerIngredientSubmit(ingredient);
                 hamburguerStep++;
-                if (hamburguerStep >= HamburgerIngredientsCount)
+                if (hamburguerStep >= order.HamburgerIngredientsCount)
                     completedHamburguer = true;
             }
             else
@@ -156,29 +124,7 @@ namespace LaGranLucha.Game
             onOrderCompleted?.Invoke();
             shownName.text = string.Empty;
             currentIngredientArrow.gameObject.SetActive(false);
-            int coinsIncrease = 0;
-            float discountIncrease = 0;
-
-            if (HaveHamburger)
-            {
-                coinsIncrease += hamburguer.Coins;
-                discountIncrease += hamburguer.Discount;
-            }
-
-            if (HaveFries)
-            {
-                coinsIncrease += fries.Coins;
-                discountIncrease += fries.Discount;
-            }
-
-            if (HaveDrink)
-            {
-                coinsIncrease += drink.Coins;
-                discountIncrease += drink.Discount;
-            }
-
-            coins.Increase(coinsIncrease);
-            discount.Increase(discountIncrease);
+            discount.Increase(order.OrderScore);
             if (TimeRemaining > 0)
                 Invoke(nameof(NewOrder), DelayForNewOrder);
             else
@@ -204,25 +150,25 @@ namespace LaGranLucha.Game
 
         private Ingredient GetHamburguerIngredient(int step)
         {
-            if (!HaveHamburger || step >= hamburguer.Ingredients.Count)
+            if (!order.HaveHamburger || step >= order.Hamburguer.Ingredients.Count)
                 return null;
-            return hamburguer.Ingredients[step];
+            return order.Hamburguer.Ingredients[step];
         }
 
         private Ingredient GetFriesIngredient()
         {
-            if (!HaveFries || completedFries)
+            if (!order.HaveFries || completedFries)
                 return null;
 
-            return fries.Ingredients[default(int)];
+            return order.Fries.Ingredients[default(int)];
         }
 
         private Ingredient GetDrinkIngredient()
         {
-            if (!HaveDrink || completedDrink)
+            if (!order.HaveDrink || completedDrink)
                 return null;
 
-            return drink.Ingredients[default(int)];
+            return order.Drink.Ingredients[default(int)];
         }
 
         #endregion

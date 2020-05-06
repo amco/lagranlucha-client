@@ -41,7 +41,7 @@ namespace LaGranLucha.Game
             barTween.Pause();
         }
 
-        private void OrderStart()
+        private void OrderStart(Order order)
         {
             fill.fillAmount = 1;
             barTween = fill.DOFillAmount(0, fillDuration).SetEase(Ease.Linear).OnUpdate(SetBarColor);

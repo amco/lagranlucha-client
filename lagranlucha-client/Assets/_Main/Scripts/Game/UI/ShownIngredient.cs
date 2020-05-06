@@ -17,6 +17,8 @@ namespace LaGranLucha.Game
 
         private Ingredient ingredient = null;
 
+        private bool showing = false;
+
         #endregion
 
         #region PROPERTIES
@@ -43,14 +45,22 @@ namespace LaGranLucha.Game
 
         public void Hide()
         {
+            if (!showing)
+                return;
+
             canvasGroup.Hide();
             transform.DOScale(Vector3.zero, 0.5f);
+            showing = false;
         }
 
         public void Show()
         {
+            if (showing)
+                return;
+
             canvasGroup.Show();
             transform.DOScale(Vector3.one, 0.5f);
+            showing = true;
         }
 
         #endregion
