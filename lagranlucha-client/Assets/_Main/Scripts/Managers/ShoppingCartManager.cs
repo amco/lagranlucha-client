@@ -49,21 +49,6 @@ namespace LaGranLucha.Managers
             apiManager.SendFakeRequestSucceded(order, null);
         }
 
-        public Variant GetProductFromCart(Variant product)
-        {
-            CartItem newItem = new CartItem(product);
-            if (Items.Contains(newItem))
-            {
-                foreach (CartItem item in Items)
-                {
-                    if (item.Equals(newItem))
-                        return item.Product;
-                }
-            }
-
-            return null;
-        }
-
         public void UpdateItem(Variant product, int quantity)
         {
             CartItem newItem = new CartItem(product);
