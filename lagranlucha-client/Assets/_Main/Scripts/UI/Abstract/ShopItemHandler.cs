@@ -33,7 +33,6 @@ namespace LaGranLucha.UI
 
         #region BEHAVIORS
 
-        protected abstract void UpdateItem();
         protected abstract void UpdateUI(int productId, int quantity);
 
         private void Awake()
@@ -46,14 +45,14 @@ namespace LaGranLucha.UI
         {
             quantity++;
             quantity = Mathf.Clamp(quantity, default(int), MaxQuantity);
-            UpdateItem();
+            shoppingCartManager.UpdateItem(product, quantity);
         }
 
         private void RemoveItem()
         {
             quantity--;
             quantity = Mathf.Clamp(quantity, default(int), MaxQuantity);
-            UpdateItem();
+            shoppingCartManager.UpdateItem(product, quantity);
         }
 
         #endregion

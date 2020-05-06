@@ -37,11 +37,6 @@ namespace LaGranLucha.UI
             quantityText.text = quantity.ToString();
         }
 
-        protected override void UpdateItem()
-        {
-            shoppingCartManager.UpdateItem(product, quantity);
-        }
-
         protected override void UpdateUI(int productId, int quantity)
         {
             if (productId != this.product.Id)
