@@ -4,7 +4,7 @@ using UnityEngine;
 using Zenject;
 using CFLFramework.API;
 
-namespace LaGranLucha.API
+namespace LaGranLucha.Managers
 {
     public partial class LaGranLuchaManager : MonoBehaviour
     {

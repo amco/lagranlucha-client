@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 using CFLFramework.API;
 using CFLFramework.Utilities.Save;
 
-namespace LaGranLucha.API
+using LaGranLucha.API;
+
+namespace LaGranLucha.Managers
 {
     public partial class LaGranLuchaManager
     {
@@ -12,6 +15,8 @@ namespace LaGranLucha.API
 
         private const string FakeFoodsJson = "foods";
         private const string FakeDrinksJson = "drinks";
+
+        [SerializeField] private GameObject shoppingScene;
 
         private List<Food> foods = new List<Food>();
         private List<Drink> drinks = new List<Drink>();
@@ -37,6 +42,11 @@ namespace LaGranLucha.API
         {
             List<Drink> jsonDrinks = SaveLoad.LoadNewtonsoftJsonFromStreamingAssets<List<Drink>>(FakeDrinksJson);
             apiManager.SendFakeRequestSucceded(jsonDrinks, (webResponse => PopulateList(ref drinks, webResponse)) + response);
+        }
+
+        public void OpenShoppingScene()
+        {
+            shoppingScene.SetActive(true);
         }
 
         #endregion

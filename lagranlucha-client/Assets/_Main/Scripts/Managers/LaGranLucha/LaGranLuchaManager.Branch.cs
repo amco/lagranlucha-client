@@ -1,16 +1,21 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 using CFLFramework.API;
 using CFLFramework.Utilities.Save;
 
-namespace LaGranLucha.API
+using LaGranLucha.API;
+
+namespace LaGranLucha.Managers
 {
     public partial class LaGranLuchaManager
     {
         #region FIELDS
 
         private const string FakeBranchesJson = "branches";
+
+        [SerializeField] private GameObject branchScene;
 
         private List<Branch> branches = new List<Branch>();
 
@@ -28,6 +33,11 @@ namespace LaGranLucha.API
         {
             List<Branch> jsonBranches = SaveLoad.LoadNewtonsoftJsonFromStreamingAssets<List<Branch>>(FakeBranchesJson);
             apiManager.SendFakeRequestSucceded(jsonBranches, (webResponse => PopulateList(ref branches, webResponse)) + response);
+        }
+
+        public void OpenBranchScene()
+        {
+            branchScene.SetActive(true);
         }
 
         #endregion
