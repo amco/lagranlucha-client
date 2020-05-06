@@ -33,8 +33,6 @@ namespace LaGranLucha.Game
         public bool HaveFries { get => selectedFries != null; }
         public bool HaveDrink { get => selectedDrink != null; }
         public int HamburgerIngredientsCount { get => selectedHamburguer != null ? selectedHamburguer.Ingredients.Count : 0; }
-        public int FriesIngredientsCount { get => selectedFries != null ? selectedFries.Ingredients.Count : 0; }
-        public int DrinkIngredientsCount { get => selectedDrink != null ? selectedDrink.Ingredients.Count : 0; }
         public string OrderName
         {
             get
@@ -52,21 +50,37 @@ namespace LaGranLucha.Game
                 return string.Format(ProductNameFormats[names.Count], names.ToArray());
             }
         }
-        public float OrderScore
+        public int OrderScore
         {
             get
             {
-                float points = 0;
-                if (HaveHamburger)
-                    points += selectedHamburguer.Points;
-
-                if (HaveFries)
-                    points += selectedFries.Points;
-
-                if (HaveDrink)
-                    points += selectedDrink.Points;
-
+                int points = 0;
+                points += HaveHamburger ? selectedHamburguer.Points : 0;
+                points += HaveFries ? selectedFries.Points : 0;
+                points += HaveDrink ? selectedDrink.Points : 0;
                 return points;
+            }
+        }
+        public int DelayedOrderScore
+        {
+            get
+            {
+                int points = 0;
+                points += HaveHamburger ? selectedHamburguer.DelayedPoints : 0;
+                points += HaveFries ? selectedFries.DelayedPoints : 0;
+                points += HaveDrink ? selectedDrink.DelayedPoints : 0;
+                return points;
+            }
+        }
+        public float BarTime
+        {
+            get
+            {
+                float estimatedTime = 0;
+                estimatedTime += HaveHamburger ? selectedHamburguer.EstimatedTime : 0;
+                estimatedTime += HaveFries ? selectedFries.EstimatedTime : 0;
+                estimatedTime += HaveDrink ? selectedDrink.EstimatedTime : 0;
+                return estimatedTime;
             }
         }
 

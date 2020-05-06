@@ -21,5 +21,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e80fddb5ffdc43ea91a3c5d996e6c2a, type: 2}
   - {fileID: 11400000, guid: f381bd47199074913ad1d9aac4df3004, type: 2}
   - {fileID: 11400000, guid: e656d0f2248e34321813e194ae38650d, type: 2}
-  coins: 14
-  discount: 1.4
+  points: 10
+  delayedPoints: 8
+  estimatedTime: 3

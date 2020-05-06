@@ -15,5 +15,6 @@ MonoBehaviour:
   name: Malteada de Vainilla
   ingredients:
   - {fileID: 11400000, guid: e0c9b48197f61495e89351fff140e9e2, type: 2}
-  coins: 1
-  discount: 0.1
+  points: 1
+  delayedPoints: 1
+  estimatedTime: 1

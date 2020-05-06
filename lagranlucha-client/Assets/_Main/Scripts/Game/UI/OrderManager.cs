@@ -23,6 +23,7 @@ namespace LaGranLucha.Game
         [SerializeField] private NumberCounter timer = null;
         [SerializeField] private NumberCounter discount = null;
         [SerializeField] private GameObject currentIngredientArrow = null;
+        [SerializeField] private OrderBar orderBar = null;
 
         private int hamburguerStep = 0;
         private bool completedHamburguer = false;
@@ -124,7 +125,7 @@ namespace LaGranLucha.Game
             onOrderCompleted?.Invoke();
             shownName.text = string.Empty;
             currentIngredientArrow.gameObject.SetActive(false);
-            discount.Increase(order.OrderScore);
+            discount.Increase(orderBar.OnTime ? order.OrderScore : order.DelayedOrderScore);
             if (TimeRemaining > 0)
                 Invoke(nameof(NewOrder), DelayForNewOrder);
             else
@@ -152,6 +153,7 @@ namespace LaGranLucha.Game
         {
             if (!order.HaveHamburger || step >= order.Hamburguer.Ingredients.Count)
                 return null;
+
             return order.Hamburguer.Ingredients[step];
         }
 

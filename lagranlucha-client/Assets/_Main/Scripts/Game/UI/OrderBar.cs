@@ -13,10 +13,6 @@ namespace LaGranLucha.Game
         [Inject] private OrderManager orderManager = null;
 
         [SerializeField] private Image fill = null;
-        [SerializeField] private float fillDuration = 20f;
-        [SerializeField] private AnimationCurve penaltyCurve = null;
-        [SerializeField] private float[] penaltyAmount = null;
-        [SerializeField] private Color[] penaltyColor = null;
 
         private Tween barTween;
 
@@ -24,7 +20,7 @@ namespace LaGranLucha.Game
 
         #region PROPERTIES
 
-        public float GetPenalty { get => penaltyAmount[Mathf.RoundToInt(penaltyCurve.Evaluate(fill.fillAmount))]; }
+        public bool OnTime { get => fill.fillAmount > 0; }
 
         #endregion
 
@@ -44,12 +40,7 @@ namespace LaGranLucha.Game
         private void OrderStart(Order order)
         {
             fill.fillAmount = 1;
-            barTween = fill.DOFillAmount(0, fillDuration).SetEase(Ease.Linear).OnUpdate(SetBarColor);
-        }
-
-        private void SetBarColor()
-        {
-            fill.color = penaltyColor[Mathf.RoundToInt(penaltyCurve.Evaluate(fill.fillAmount))];
+            barTween = fill.DOFillAmount(0, order.BarTime).SetEase(Ease.Linear);
         }
 
         #endregion

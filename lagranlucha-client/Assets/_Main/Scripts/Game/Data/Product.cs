@@ -12,7 +12,9 @@ namespace LaGranLucha.Game
 
         [SerializeField] private new string name = null;
         [SerializeField] private List<Ingredient> ingredients = null;
-        [SerializeField] private float discount = 0;
+        [SerializeField] private int points = 0;
+        [SerializeField] private int delayedPoints = 0;
+        [SerializeField] private float estimatedTime = 0;
 
         #endregion
 
@@ -20,8 +22,9 @@ namespace LaGranLucha.Game
 
         public string Name { get => name; }
         public List<Ingredient> Ingredients { get => ingredients; }
-        public float Discount { get => discount; }
-        public float Points { get => discount; }
+        public int Points { get => points; }
+        public int DelayedPoints { get => delayedPoints; }
+        public float EstimatedTime { get => estimatedTime; }
 
         #endregion
     }
