@@ -6,6 +6,7 @@ using TMPro;
 using Zenject;
 using CFLFramework.Time;
 
+using LaGranLucha.UI;
 using LaGranLucha.API;
 
 namespace LaGranLucha.UI
@@ -18,6 +19,7 @@ namespace LaGranLucha.UI
         private const string Divider = " - ";
 
         [Inject] private TimeManager timeManager;
+        [Inject] private BranchUI branchUI;
 
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI timeText;
@@ -38,6 +40,7 @@ namespace LaGranLucha.UI
         private void Awake()
         {
             selectButton = GetComponent<Button>();
+            selectButton.onClick.AddListener(() => branchUI.SelectBranch(branch.Id));
         }
 
         public void Initialize(Branch branch)

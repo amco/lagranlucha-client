@@ -15,8 +15,8 @@ namespace LaGranLucha.Managers
 
         public const string PesosSign = "$";
 
-        [Inject] private BranchManager branchManager;
         [Inject] private APIManager apiManager;
+        [Inject] private LaGranLuchaManager laGranLuchaManager;
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace LaGranLucha.Managers
                 order.LineItems.Add(orderProduct);
             }
 
-            order.BranchId = branchManager.CurrentBranch.Id;
+            order.BranchId = laGranLuchaManager.CurrentBranchId;
             apiManager.SendFakeRequestSucceded(order, null);
         }
 

@@ -3,12 +3,12 @@
 using Zenject;
 using CFLFramework.API;
 
-using LaGranLucha.UI;
 using LaGranLucha.API;
+using LaGranLucha.Managers;
 
-namespace LaGranLucha.Managers
+namespace LaGranLucha.UI
 {
-    public class BranchManager : MonoBehaviour
+    public class BranchUI : MonoBehaviour
     {
         #region FIELDS
 
@@ -19,22 +19,11 @@ namespace LaGranLucha.Managers
 
         #endregion
 
-        #region PROPERTIES
-
-        public Branch CurrentBranch { get; private set; } = null;
-
-        #endregion
-
         #region BEHAVIORS
 
-        public void GetBranches()
+        private void Start()
         {
             laGranLuchaManager.GetBranches(OnGetBranches);
-        }
-
-        public void SelectBranch(Branch branch)
-        {
-            CurrentBranch = branch;
         }
 
         private void OnGetBranches(WebRequestResponse response)
@@ -44,6 +33,13 @@ namespace LaGranLucha.Managers
 
             foreach (Branch branch in laGranLuchaManager.Branches)
                 Instantiate<BranchHandler>(branchPrefab, branchesContainer).Initialize(branch);
+        }
+
+        public void SelectBranch(int branchId)
+        {
+            laGranLuchaManager.SelectBranch(branchId);
+            laGranLuchaManager.OpenShoppingScene();
+            gameObject.SetActive(false);
         }
 
         #endregion
