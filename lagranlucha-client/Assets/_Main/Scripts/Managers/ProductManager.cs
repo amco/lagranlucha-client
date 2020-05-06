@@ -14,7 +14,7 @@ namespace LaGranLucha.Managers
 
         [Inject] protected LaGranLuchaManager laGranLuchaManager;
 
-        [SerializeField] protected ProductHandler productPrefab;
+        [SerializeField] protected CartItemHandler productPrefab;
         [SerializeField] protected Transform productsContainer;
 
         #endregion

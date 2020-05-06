@@ -49,6 +49,7 @@
           "type":"variant",
           "attributes":{
              "name":"vanilla",
+             "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
              "price":52.0,
              "image":"url"
           }
@@ -58,6 +59,7 @@
           "type":"variant",
           "attributes":{
              "name":"chocolate",
+             "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
              "price":71.0,
              "image":"url"
           }
@@ -67,6 +69,7 @@
           "type":"variant",
           "attributes":{
              "name":"coca",
+             "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
              "price":67.0,
              "image":"url"
           }
@@ -76,6 +79,7 @@
           "type":"variant",
           "attributes":{
              "name":"sprite",
+             "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
              "price":50.0,
              "image":"url"
           }

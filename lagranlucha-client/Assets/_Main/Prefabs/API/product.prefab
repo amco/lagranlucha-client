@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 3824402961729445961}
   - component: {fileID: 424396024532727250}
   - component: {fileID: 8751135460092923873}
-  - component: {fileID: 8374946015742956200}
+  - component: {fileID: 2047520154691836494}
   - component: {fileID: 3666638700021262209}
   m_Layer: 5
   m_Name: product
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8374946015742956200
+--- !u!114 &2047520154691836494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3824402961729445966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4a26f3fd45abec4cacbcfa48ac9dc03, type: 3}
+  m_Script: {fileID: 11500000, guid: 1617ae989ddc7ae49a415818f08e477c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 3824402963008938361}
@@ -413,6 +413,7 @@ MonoBehaviour:
   quantityText: {fileID: 3824402961871671361}
   addButton: {fileID: 3824402962459348702}
   removeButton: {fileID: 3824402963105839663}
+  descriptionText: {fileID: 8415861424434506038}
 --- !u!114 &3666638700021262209
 MonoBehaviour:
   m_ObjectHideFlags: 0

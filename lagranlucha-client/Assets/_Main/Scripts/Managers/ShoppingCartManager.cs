@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 using Zenject;
 using CFLFramework.API;
@@ -12,8 +13,16 @@ namespace LaGranLucha.Managers
     {
         #region FIELDS
 
+        public const string PesosSign = "$";
+
         [Inject] private BranchManager branchManager;
         [Inject] private APIManager apiManager;
+
+        #endregion
+
+        #region EVENTS
+
+        public event UnityAction<int, int> onCartUpdated;
 
         #endregion
 
@@ -66,12 +75,15 @@ namespace LaGranLucha.Managers
                     {
                         if (quantity <= default(int))
                         {
+                            item.Quantity = default(int);
+                            onCartUpdated?.Invoke(item.Product.Id, item.Quantity);
                             RemoveItem(item.Product);
-                            return;
+                            break;
                         }
 
                         item.Quantity = quantity;
-                        return;
+                        onCartUpdated?.Invoke(item.Product.Id, item.Quantity);
+                        break;
                     }
                 }
             }
@@ -79,6 +91,7 @@ namespace LaGranLucha.Managers
             {
                 newItem.Quantity = quantity;
                 Items.Add(newItem);
+                onCartUpdated?.Invoke(newItem.Product.Id, newItem.Quantity);
             }
         }
 
