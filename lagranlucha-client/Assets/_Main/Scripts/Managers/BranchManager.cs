@@ -23,7 +23,7 @@ namespace LaGranLucha.Managers
 
         #region PROPERTIES
 
-        public Branch CurrentBranch { get; private set; } = new Branch();
+        public Branch CurrentBranch { get; private set; } = null;
 
         #endregion
 
