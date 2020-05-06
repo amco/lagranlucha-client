@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 using Zenject;
 using CFLFramework.API;
@@ -14,12 +15,21 @@ namespace LaGranLucha.UI
 
         [Inject] private LaGranLuchaManager laGranLuchaManager;
 
+        [Header("BRANCH")]
         [SerializeField] private BranchHandler branchPrefab;
         [SerializeField] private Transform branchesContainer;
+
+        [Header("UI")]
+        [SerializeField] private Button backButton;
 
         #endregion
 
         #region BEHAVIORS
+
+        private void Awake()
+        {
+            backButton.onClick.AddListener(GoBackHome);
+        }
 
         private void OnEnable()
         {
@@ -39,6 +49,13 @@ namespace LaGranLucha.UI
         {
             laGranLuchaManager.SelectBranch(branchId);
             laGranLuchaManager.OpenShoppingScene();
+            gameObject.SetActive(false);
+            RemoveBranches();
+        }
+
+        private void GoBackHome()
+        {
+            laGranLuchaManager.OpenHomeScene();
             gameObject.SetActive(false);
             RemoveBranches();
         }
