@@ -12,10 +12,12 @@ namespace LaGranLucha.Game
     {
         #region FIELDS
 
-        private const float DelayForNewOrder = 1.5f;
-        private const float DelayForEndRound = 2f;
+        private const float DelayRoundStart = 1.5f;
+        private const float DelayForEndRound = 1.5f;
 
         [Inject] private GameManager gameManager = null;
+        [Inject] private ParticlesManager particlesManager = null;
+        [Inject] private OrderUI orderUI = null;
 
         [SerializeField] private RoundsOrders roundOrder = null;
         [SerializeField] private List<ShownIngredient> hamburguerIngredients = null;
@@ -23,7 +25,8 @@ namespace LaGranLucha.Game
         [SerializeField] private ShownIngredient drinkIngredient = null;
         [SerializeField] private TMP_Text shownName = null;
         [SerializeField] private NumberCounter timer = null;
-        [SerializeField] private NumberCounter discount = null;
+        [SerializeField] private NumberCounter stars = null;
+        [SerializeField] private GameObject starParticlePrefab = null;
         [SerializeField] private GameObject currentIngredientArrow = null;
         [SerializeField] private OrderBar orderBar = null;
 
@@ -57,12 +60,19 @@ namespace LaGranLucha.Game
 
         private void Start()
         {
+            orderUI.onTrayCleaned += OrderSent;
             gameManager.onRoundStart += StartRound;
+        }
+
+        private void OnDestroy()
+        {
+            orderUI.onTrayCleaned -= OrderSent;
+            gameManager.onRoundStart -= StartRound;
         }
 
         private void StartRound(int round)
         {
-            Invoke(nameof(NewOrder), DelayForNewOrder);
+            Invoke(nameof(NewOrder), DelayRoundStart);
         }
 
         private void NewOrder()
@@ -138,9 +148,13 @@ namespace LaGranLucha.Game
             onOrderCompleted?.Invoke();
             shownName.text = string.Empty;
             currentIngredientArrow.gameObject.SetActive(false);
-            discount.Increase(orderBar.OnTime ? order.OrderScore : order.DelayedOrderScore);
+        }
+
+        private void OrderSent()
+        {
+            particlesManager.SpawnParticles(starParticlePrefab, stars, Vector2.zero, orderBar.OnTime ? order.OrderScore : order.DelayedOrderScore);
             if (TimeRemaining > 0)
-                Invoke(nameof(NewOrder), DelayForNewOrder);
+                NewOrder();
             else
                 Invoke(nameof(EndRound), DelayForEndRound);
         }

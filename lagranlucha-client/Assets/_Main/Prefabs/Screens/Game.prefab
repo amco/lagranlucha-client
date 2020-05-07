@@ -242,7 +242,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3595807277047505324}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -525,6 +525,102 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &113318800066607966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419440665593142481}
+  - component: {fileID: 3474847034549445285}
+  - component: {fileID: 3737420303330236296}
+  m_Layer: 0
+  m_Name: Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &419440665593142481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113318800066607966}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3595807277047505324}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3474847034549445285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113318800066607966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08fd5e57a512c41ac9b3b9d306f1d7aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePopSound: {fileID: 0}
+  tweenScaleEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.15
+      inSlope: 6.1693053
+      outSlope: 6.1693053
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.09888768
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: 0.040012993
+      outSlope: 0.040012993
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.9216429
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 0.25
+      inSlope: -5.3149137
+      outSlope: -5.3149137
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.12173489
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &3737420303330236296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113318800066607966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 3474847034549445285}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!1 &165630166037889721
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +634,7 @@ GameObject:
   - component: {fileID: 3523107051506578000}
   - component: {fileID: 4203928566224229210}
   m_Layer: 5
-  m_Name: Discount
+  m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1349,7 +1445,9 @@ MonoBehaviour:
   drinkIngredient: {fileID: 5267385694195716390}
   shownName: {fileID: 8289874105927772190}
   timer: {fileID: 8069280747850436974}
-  discount: {fileID: 4203928566224229210}
+  stars: {fileID: 4203928566224229210}
+  starParticlePrefab: {fileID: 7886690056724773708, guid: ac6a21d3558db43fca1eef10d08bf4ae,
+    type: 3}
   currentIngredientArrow: {fileID: 1487238534508301825}
   orderBar: {fileID: 9167378543923686910}
 --- !u!114 &5201673271866175910
@@ -4965,7 +5063,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -19, y: 317}
-  m_SizeDelta: {x: 290.35458, y: 112.953705}
+  m_SizeDelta: {x: 318.34207, y: 112.953705}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3611474346854395971
 CanvasRenderer:
@@ -6609,8 +6707,9 @@ GameObject:
   - component: {fileID: 7846770039987228707}
   - component: {fileID: 1748105257457588359}
   - component: {fileID: 4066300509630152256}
+  - component: {fileID: 509776026957547956}
   m_Layer: 0
-  m_Name: Order
+  m_Name: Tray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6692,6 +6791,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &509776026957547956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200937282550693715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 7846770039987228707}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!1 &7500138853834574260
 GameObject:
   m_ObjectHideFlags: 0

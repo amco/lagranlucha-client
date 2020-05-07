@@ -2,6 +2,7 @@
 
 using DG.Tweening;
 using Zenject;
+using System;
 
 namespace LaGranLucha.Game
 {
@@ -10,6 +11,7 @@ namespace LaGranLucha.Game
         #region FIELDS
 
         [Inject] private OrderManager orderManager = null;
+        [Inject] private GameManager gameManager = null;
 
         [SerializeField] private Transform withHamburguerContainer = null;
         [SerializeField] private Transform noHamburguerContainer = null;
@@ -24,6 +26,12 @@ namespace LaGranLucha.Game
 
         #endregion
 
+        #region EVENTS
+
+        public event Action onTrayCleaned;
+
+        #endregion
+
         #region BEHAVIORS
 
         private void Awake()
@@ -33,9 +41,26 @@ namespace LaGranLucha.Game
             orderManager.onHamburguerIngredientSubmit += SendHamburguerIngredient;
             orderManager.onFriesIngredientSubmit += SendFriesIngredient;
             orderManager.onDrinkIngredientSubmit += SendDrinkIngredient;
-            orderManager.onOrderCompleted += OrderCompleted;
+            orderManager.onOrderCompleted += SendTrayToSide;
             orderManager.onHamburguerReset += Resethamburguer;
             orderManager.onNewOrderStart += OrderStart;
+            gameManager.onRoundStart += StartRound;
+        }
+
+        private void OnDestroy()
+        {
+            orderManager.onHamburguerIngredientSubmit -= SendHamburguerIngredient;
+            orderManager.onFriesIngredientSubmit -= SendFriesIngredient;
+            orderManager.onDrinkIngredientSubmit -= SendDrinkIngredient;
+            orderManager.onOrderCompleted -= SendTrayToSide;
+            orderManager.onHamburguerReset -= Resethamburguer;
+            orderManager.onNewOrderStart -= OrderStart;
+            gameManager.onRoundStart -= StartRound;
+        }
+
+        private void StartRound(int round)
+        {
+            BringTrayToCenter();
         }
 
         private void OrderStart(Order order)
@@ -60,9 +85,9 @@ namespace LaGranLucha.Game
             }
         }
 
-        private void OrderCompleted()
+        private void SendTrayToSide()
         {
-            rectTransform.DOAnchorPosX(Screen.width, 0.5f).SetDelay(0.9f).SetEase(Ease.InBack).OnComplete(CleanOrder);
+            rectTransform.DOAnchorPosX(Screen.width, 0.5f).SetDelay(1f).SetEase(Ease.InBack).OnComplete(CleanOrder);
         }
 
         private void Resethamburguer()
@@ -86,6 +111,13 @@ namespace LaGranLucha.Game
                 foreach (Transform child in drinkContainer)
                     GameObject.Destroy(child.gameObject);
 
+            onTrayCleaned?.Invoke();
+            if (orderManager.TimeRemaining > 0)
+                BringTrayToCenter();
+        }
+
+        private void BringTrayToCenter()
+        {
             rectTransform.anchoredPosition = startPosition;
             rectTransform.DOAnchorPosX(-Screen.width, 0.5f).From().SetEase(Ease.OutBack);
         }
