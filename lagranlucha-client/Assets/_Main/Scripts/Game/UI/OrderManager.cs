@@ -54,6 +54,10 @@ namespace LaGranLucha.Game
 
         public bool OrderComplete { get => completedHamburguer && completedFries && completedDrink; }
         public bool HaveTimeRemaining { get => timer.IntValue > default(int); }
+        public float ThisRoundHamburguersScore { get; private set; }
+        public float ThisRoundFriesScore { get; private set; }
+        public float ThisRoundDrinksScore { get; private set; }
+        public float ThisRoundTotalScore { get => ThisRoundHamburguersScore + ThisRoundFriesScore + ThisRoundDrinksScore; }
 
         #endregion
 
@@ -73,6 +77,9 @@ namespace LaGranLucha.Game
 
         private void StartRound(int round)
         {
+            ThisRoundHamburguersScore = 0;
+            ThisRoundFriesScore = 0;
+            ThisRoundDrinksScore = 0;
             Invoke(nameof(NewOrder), DelayRoundStart);
         }
 
@@ -150,6 +157,18 @@ namespace LaGranLucha.Game
             shownName.text = string.Empty;
             currentIngredientArrow.gameObject.SetActive(false);
             Invoke(nameof(SpawnParticles), ParticlesSpawnDelay);
+            if (orderBar.OnTime)
+            {
+                ThisRoundHamburguersScore += order.HamburguerScore;
+                ThisRoundFriesScore += order.FriesScore;
+                ThisRoundDrinksScore += order.DrinkScore;
+            }
+            else
+            {
+                ThisRoundHamburguersScore += order.DelayedHamburguerScore;
+                ThisRoundFriesScore += order.DelayedFriesScore;
+                ThisRoundDrinksScore += order.DelayedDrinkScore;
+            }
         }
 
         private void SpawnParticles()

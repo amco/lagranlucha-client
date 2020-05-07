@@ -33,6 +33,12 @@ namespace LaGranLucha.Game
         public bool HaveFries { get => selectedFries != null; }
         public bool HaveDrink { get => selectedDrink != null; }
         public int HamburgerIngredientsCount { get => selectedHamburguer != null ? selectedHamburguer.Ingredients.Count : 0; }
+        public int HamburguerScore { get => HaveHamburger ? selectedHamburguer.Points : 0; }
+        public int FriesScore { get => HaveFries ? selectedFries.Points : 0; }
+        public int DrinkScore { get => HaveDrink ? selectedDrink.Points : 0; }
+        public int DelayedHamburguerScore { get => HaveHamburger ? selectedHamburguer.DelayedPoints : 0; }
+        public int DelayedFriesScore { get => HaveFries ? selectedFries.DelayedPoints : 0; }
+        public int DelayedDrinkScore { get => HaveDrink ? selectedDrink.DelayedPoints : 0; }
         public string OrderName
         {
             get
@@ -55,9 +61,9 @@ namespace LaGranLucha.Game
             get
             {
                 int points = 0;
-                points += HaveHamburger ? selectedHamburguer.Points : 0;
-                points += HaveFries ? selectedFries.Points : 0;
-                points += HaveDrink ? selectedDrink.Points : 0;
+                points += HamburguerScore;
+                points += FriesScore;
+                points += DrinkScore;
                 return points;
             }
         }
@@ -66,9 +72,9 @@ namespace LaGranLucha.Game
             get
             {
                 int points = 0;
-                points += HaveHamburger ? selectedHamburguer.DelayedPoints : 0;
-                points += HaveFries ? selectedFries.DelayedPoints : 0;
-                points += HaveDrink ? selectedDrink.DelayedPoints : 0;
+                points += DelayedHamburguerScore;
+                points += DelayedFriesScore;
+                points += DelayedDrinkScore;
                 return points;
             }
         }
