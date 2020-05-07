@@ -37,7 +37,7 @@ namespace LaGranLucha.Game
 
         private void SecondPassed()
         {
-            if (numberCounter.Value > 0)
+            if (numberCounter.Value > default(int))
                 numberCounter.Decrease();
             else
                 CancelInvoke(nameof(SecondPassed));

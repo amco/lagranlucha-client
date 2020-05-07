@@ -10,6 +10,9 @@ namespace LaGranLucha.Game
     {
         #region FIELDS
 
+        private const float TrayMovementDuration = 0.5f;
+        private const float Delay = 1f;
+
         [Inject] private OrderManager orderManager = null;
         [Inject] private GameManager gameManager = null;
 
@@ -87,7 +90,7 @@ namespace LaGranLucha.Game
 
         private void SendTrayToSide()
         {
-            rectTransform.DOAnchorPosX(Screen.width, 0.5f).SetDelay(1f).SetEase(Ease.InBack).OnComplete(CleanOrder);
+            rectTransform.DOAnchorPosX(Screen.width, TrayMovementDuration).SetDelay(Delay).SetEase(Ease.InBack).OnComplete(CleanOrder);
         }
 
         private void Resethamburguer()
@@ -119,7 +122,7 @@ namespace LaGranLucha.Game
         private void BringTrayToCenter()
         {
             rectTransform.anchoredPosition = startPosition;
-            rectTransform.DOAnchorPosX(-Screen.width, 0.5f).From().SetEase(Ease.OutBack);
+            rectTransform.DOAnchorPosX(-Screen.width, TrayMovementDuration).From().SetEase(Ease.OutBack);
         }
 
         private void SendHamburguerIngredient(Ingredient ingredient)

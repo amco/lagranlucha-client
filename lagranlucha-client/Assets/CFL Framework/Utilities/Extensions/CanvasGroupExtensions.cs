@@ -23,10 +23,14 @@ namespace CFLFramework.Utilities.Extensions
             return canvasGroup.DOFade(NoFade, duration).OnComplete(() => canvasGroup.blocksRaycasts = true);
         }
 
-        public static Tween Hide(this CanvasGroup canvasGroup, float duration = FadeDuration)
+        public static Tween Hide(this CanvasGroup canvasGroup, float duration = FadeDuration, bool disableOnEnd = true)
         {
             canvasGroup.blocksRaycasts = false;
-            return canvasGroup.DOFade(ClearFade, duration).OnComplete(() => canvasGroup.gameObject.SetActive(false));
+            Tween hideTween = canvasGroup.DOFade(ClearFade, duration);
+            if (disableOnEnd)
+                hideTween.OnComplete(() => canvasGroup.gameObject.SetActive(false));
+
+            return hideTween;
         }
 
         #endregion

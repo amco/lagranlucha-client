@@ -3,12 +3,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using DG.Tweening;
+using CFLFramework.Utilities.Extensions;
 
 namespace LaGranLucha.Game
 {
     public class ShownIngredient : MonoBehaviour
     {
         #region FIELDS
+
+        private const float ScaleDuration = 0.5f;
 
         [SerializeField] private RectTransform rectTransform = null;
         [SerializeField] private Image icon = null;
@@ -55,8 +58,8 @@ namespace LaGranLucha.Game
             if (!showing)
                 return;
 
-            canvasGroup.DOFade(0, 0.3f);
-            rectTransform.DOSizeDelta(Vector2.zero, 0.5f).SetEase(Ease.OutBounce).OnComplete(() => gameObject.SetActive(false));
+            canvasGroup.Hide(disableOnEnd: false);
+            rectTransform.DOSizeDelta(Vector2.zero, ScaleDuration).SetEase(Ease.OutBounce).OnComplete(() => gameObject.SetActive(false));
             showing = false;
         }
 
@@ -66,8 +69,8 @@ namespace LaGranLucha.Game
                 return;
 
             gameObject.SetActive(true);
-            canvasGroup.DOFade(1, 0.3f);
-            rectTransform.DOSizeDelta(baseSizeDelta, 0.5f);
+            canvasGroup.Show();
+            rectTransform.DOSizeDelta(baseSizeDelta, ScaleDuration);
             showing = true;
         }
 

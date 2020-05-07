@@ -10,6 +10,8 @@ namespace LaGranLucha.Game
     {
         #region FIELDS
 
+        private const float CompletelyFilledAmount = 1f;
+
         [Inject] private OrderManager orderManager = null;
 
         [SerializeField] private Ingredient ingredient = null;
@@ -36,7 +38,7 @@ namespace LaGranLucha.Game
         private void PrepareIngredient()
         {
             button.interactable = false;
-            cooldown.DOFillAmount(1f, ingredient.IngredientSteps[step].PreparationTime).From().SetEase(Ease.Linear).OnComplete(IngredientPrepared);
+            cooldown.DOFillAmount(CompletelyFilledAmount, ingredient.IngredientSteps[step].PreparationTime).From().SetEase(Ease.Linear).OnComplete(IngredientPrepared);
         }
 
         private void IngredientPrepared()
@@ -52,7 +54,7 @@ namespace LaGranLucha.Game
         private void SendIngredient()
         {
             orderManager.SendIngredient(ingredient);
-            step = 0;
+            step = default(int);
         }
 
         private void OnValidate()

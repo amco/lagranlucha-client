@@ -77,9 +77,7 @@ namespace LaGranLucha.Game
 
         private void StartRound(int round)
         {
-            ThisRoundHamburguersScore = 0;
-            ThisRoundFriesScore = 0;
-            ThisRoundDrinksScore = 0;
+            ThisRoundHamburguersScore = ThisRoundFriesScore = ThisRoundDrinksScore = default(int);
             Invoke(nameof(NewOrder), DelayRoundStart);
         }
 
@@ -91,7 +89,7 @@ namespace LaGranLucha.Game
             completedHamburguer = !order.HaveHamburger;
             completedFries = !order.HaveFries;
             completedDrink = !order.HaveDrink;
-            hamburguerStep = 0;
+            hamburguerStep = default(int);
             SetGraphics();
             shownName.text = order.OrderName;
             onNewOrderStart?.Invoke(order);
@@ -133,14 +131,11 @@ namespace LaGranLucha.Game
                 CompletedOrder();
         }
 
-        private void ShowFail()
-        {
-            Debug.Log("Error");
-        }
+        private void ShowFail() { }
 
         private void ResetBurguer()
         {
-            hamburguerStep = 0;
+            hamburguerStep = default(int);
             onHamburguerReset?.Invoke();
             for (int i = 0; i < order.HamburgerIngredientsCount; i++)
             {

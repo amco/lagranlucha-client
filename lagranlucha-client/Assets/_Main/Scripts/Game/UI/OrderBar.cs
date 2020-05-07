@@ -10,6 +10,8 @@ namespace LaGranLucha.Game
     {
         #region FIELDS
 
+        private const float CompletelyFilledAmount = 1f;
+
         [Inject] private OrderManager orderManager = null;
 
         [SerializeField] private Image fill = null;
@@ -20,7 +22,7 @@ namespace LaGranLucha.Game
 
         #region PROPERTIES
 
-        public bool OnTime { get => fill.fillAmount > 0; }
+        public bool OnTime { get => fill.fillAmount > default(int); }
 
         #endregion
 
@@ -39,8 +41,8 @@ namespace LaGranLucha.Game
 
         private void OrderStart(Order order)
         {
-            fill.fillAmount = 1;
-            barTween = fill.DOFillAmount(0, order.BarTime).SetEase(Ease.Linear);
+            fill.fillAmount = CompletelyFilledAmount;
+            barTween = fill.DOFillAmount(default(int), order.BarTime).SetEase(Ease.Linear);
         }
 
         #endregion
