@@ -112,7 +112,7 @@ namespace LaGranLucha.Game
                     GameObject.Destroy(child.gameObject);
 
             onTrayCleaned?.Invoke();
-            if (orderManager.TimeRemaining > 0)
+            if (orderManager.HaveTimeRemaining)
                 BringTrayToCenter();
         }
 

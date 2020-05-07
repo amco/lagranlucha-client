@@ -12,6 +12,7 @@ namespace LaGranLucha.Game
     {
         #region FIELDS
 
+        private const float ParticlesSpawnDelay = 1.25f;
         private const float DelayRoundStart = 1.5f;
         private const float DelayForEndRound = 1.5f;
 
@@ -52,7 +53,7 @@ namespace LaGranLucha.Game
         #region PROPERTIES
 
         public bool OrderComplete { get => completedHamburguer && completedFries && completedDrink; }
-        public int TimeRemaining { get => timer.IntValue; }
+        public bool HaveTimeRemaining { get => timer.IntValue > default(int); }
 
         #endregion
 
@@ -148,12 +149,17 @@ namespace LaGranLucha.Game
             onOrderCompleted?.Invoke();
             shownName.text = string.Empty;
             currentIngredientArrow.gameObject.SetActive(false);
+            Invoke(nameof(SpawnParticles), ParticlesSpawnDelay);
+        }
+
+        private void SpawnParticles()
+        {
+            particlesManager.SpawnParticles(starParticlePrefab, stars, Vector2.zero, orderBar.OnTime ? order.OrderScore : order.DelayedOrderScore);
         }
 
         private void OrderSent()
         {
-            particlesManager.SpawnParticles(starParticlePrefab, stars, Vector2.zero, orderBar.OnTime ? order.OrderScore : order.DelayedOrderScore);
-            if (TimeRemaining > 0)
+            if (HaveTimeRemaining)
                 NewOrder();
             else
                 Invoke(nameof(EndRound), DelayForEndRound);
