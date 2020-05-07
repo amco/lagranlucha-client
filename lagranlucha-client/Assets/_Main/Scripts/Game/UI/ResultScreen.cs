@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 using CFLFramework.Utilities.Extensions;
 using Zenject;
@@ -11,6 +10,8 @@ namespace LaGranLucha.Game
     public class ResultScreen : MonoBehaviour
     {
         #region FIELDS
+
+        private const float ShowScoreStepDuration = 1f;
 
         [Inject] private GameManager gameManager = null;
         [Inject] private OrderManager orderManager = null;
@@ -45,14 +46,10 @@ namespace LaGranLucha.Game
         {
             hamburguerScore.text = friesScore.text = drinkScore.text = default(int).ToString();
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(DOTween.To(() => 0, x => hamburguerScore.text = x.ToString(), orderManager.ThisRoundHamburguersScore, 1f).SetOptions(true));
-            sequence.Append(DOTween.To(() => 0, x => friesScore.text = x.ToString(), orderManager.ThisRoundFriesScore, 1f).SetOptions(true));
-            sequence.Append(DOTween.To(() => 0, x => drinkScore.text = x.ToString(), orderManager.ThisRoundDrinksScore, 1f).SetOptions(true));
-            sequence.Append(DOTween.To(() => 0, x => totalScore.text = x.ToString(), orderManager.ThisRoundTotalScore, 1f).SetOptions(true));
-
-            //sequence.OnComplete(onEnd);
-
-
+            sequence.Append(DOTween.To(() => default(int), x => hamburguerScore.text = x.ToString(), orderManager.ThisRoundHamburguersScore, ShowScoreStepDuration).SetOptions(true));
+            sequence.Append(DOTween.To(() => default(int), x => friesScore.text = x.ToString(), orderManager.ThisRoundFriesScore, ShowScoreStepDuration).SetOptions(true));
+            sequence.Append(DOTween.To(() => default(int), x => drinkScore.text = x.ToString(), orderManager.ThisRoundDrinksScore, ShowScoreStepDuration).SetOptions(true));
+            sequence.Append(DOTween.To(() => default(int), x => totalScore.text = x.ToString(), orderManager.ThisRoundTotalScore, ShowScoreStepDuration).SetOptions(true));
         }
 
         #endregion
