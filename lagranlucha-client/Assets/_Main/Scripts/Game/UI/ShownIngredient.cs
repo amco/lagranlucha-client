@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-using CFLFramework.Utilities.Extensions;
 using DG.Tweening;
 
 namespace LaGranLucha.Game
@@ -14,6 +13,8 @@ namespace LaGranLucha.Game
         [SerializeField] private RectTransform rectTransform = null;
         [SerializeField] private Image icon = null;
         [SerializeField] private Image background = null;
+        [SerializeField] private Sprite currentIngredientBackground = null;
+        [SerializeField] private Sprite queuedIngredientBackground = null;
         [SerializeField] private CanvasGroup canvasGroup = null;
 
         private Ingredient ingredient = null;
@@ -55,7 +56,7 @@ namespace LaGranLucha.Game
                 return;
 
             canvasGroup.DOFade(0, 0.3f);
-            rectTransform.DOSizeDelta(Vector2.zero, 0.5f).SetEase(Ease.OutBounce);
+            rectTransform.DOSizeDelta(Vector2.zero, 0.5f).SetEase(Ease.OutBounce).OnComplete(() => gameObject.SetActive(false));
             showing = false;
         }
 
@@ -64,9 +65,20 @@ namespace LaGranLucha.Game
             if (showing)
                 return;
 
+            gameObject.SetActive(true);
             canvasGroup.DOFade(1, 0.3f);
             rectTransform.DOSizeDelta(baseSizeDelta, 0.5f);
             showing = true;
+        }
+
+        public void SetAsCurrentIngredient()
+        {
+            background.sprite = currentIngredientBackground;
+        }
+
+        public void SetAsQueuedIngredient()
+        {
+            background.sprite = queuedIngredientBackground;
         }
 
         #endregion

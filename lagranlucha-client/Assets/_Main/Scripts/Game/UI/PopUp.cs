@@ -10,7 +10,7 @@ namespace LaGranLucha.UI
 
         private const float InitialScale = 0.25f;
         private const float ScaleDuration = 1f;
-        private const float Overshoot = 1.2f;
+        private const float Overshoot = 1f;
 
         #endregion
 

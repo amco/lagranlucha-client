@@ -160,8 +160,8 @@ CanvasGroup:
   m_GameObject: {fileID: 8451575944895688889}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &2799618380468735065
 MonoBehaviour:
@@ -178,4 +178,8 @@ MonoBehaviour:
   rectTransform: {fileID: 4143866604206961925}
   icon: {fileID: 2107425994949655030}
   background: {fileID: 3078520833362036780}
+  currentIngredientBackground: {fileID: 21300000, guid: 6fd73bab5984a40c1a0aa7ccb50f6189,
+    type: 3}
+  queuedIngredientBackground: {fileID: 21300000, guid: 959f5be75454d47aeb8a7e37661b020b,
+    type: 3}
   canvasGroup: {fileID: 6518597397504768685}

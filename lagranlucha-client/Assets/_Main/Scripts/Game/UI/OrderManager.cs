@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -99,6 +100,8 @@ namespace LaGranLucha.Game
                 hamburguerStep++;
                 if (hamburguerStep >= order.HamburgerIngredientsCount)
                     completedHamburguer = true;
+                else
+                    hamburguerIngredients[hamburguerStep].SetAsCurrentIngredient();
             }
             else
             {
@@ -122,7 +125,12 @@ namespace LaGranLucha.Game
             hamburguerStep = 0;
             onHamburguerReset?.Invoke();
             for (int i = 0; i < order.HamburgerIngredientsCount; i++)
+            {
                 hamburguerIngredients[i].Show();
+                hamburguerIngredients[i].SetAsQueuedIngredient();
+            }
+
+            hamburguerIngredients.First().SetAsCurrentIngredient();
         }
 
         private void CompletedOrder()
@@ -148,8 +156,10 @@ namespace LaGranLucha.Game
             {
                 Ingredient ingredient = GetHamburguerIngredient(i);
                 hamburguerIngredients[i].SetIngredient(ingredient);
+                hamburguerIngredients[i].SetAsQueuedIngredient();
             }
 
+            hamburguerIngredients.First().SetAsCurrentIngredient();
             friesIngredient.SetIngredient(GetFriesIngredient());
             drinkIngredient.SetIngredient(GetDrinkIngredient());
         }
