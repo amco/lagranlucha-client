@@ -45,9 +45,9 @@ namespace LaGranLucha.UI
                 Instantiate<BranchHandler>(branchPrefab, branchesContainer).Initialize(branch);
         }
 
-        public void SelectBranch(int branchId)
+        public void SelectBranch(Branch branch)
         {
-            laGranLuchaManager.SelectBranch(branchId);
+            laGranLuchaManager.SelectBranch(branch);
             laGranLuchaManager.OpenShoppingScene();
             gameObject.SetActive(false);
             RemoveBranches();

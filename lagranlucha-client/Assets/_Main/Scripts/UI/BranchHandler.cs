@@ -6,7 +6,6 @@ using TMPro;
 using Zenject;
 using CFLFramework.Time;
 
-using LaGranLucha.UI;
 using LaGranLucha.API;
 
 namespace LaGranLucha.UI
@@ -40,7 +39,7 @@ namespace LaGranLucha.UI
         private void Awake()
         {
             selectButton = GetComponent<Button>();
-            selectButton.onClick.AddListener(() => branchUI.SelectBranch(branch.Id));
+            selectButton.onClick.AddListener(() => branchUI.SelectBranch(branch));
         }
 
         public void Initialize(Branch branch)

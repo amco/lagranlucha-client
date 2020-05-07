@@ -23,7 +23,7 @@ namespace LaGranLucha.Managers
 
         #region PROPERTIES
 
-        public int CurrentBranchId { get; private set; }
+        public Branch CurrentBranch { get; private set; }
         public List<Branch> Branches { get => branches == null ? new List<Branch>() : branches; }
 
         #endregion
@@ -36,9 +36,9 @@ namespace LaGranLucha.Managers
             apiManager.SendFakeRequestSucceded(jsonBranches, (webResponse => PopulateList(ref branches, webResponse)) + response);
         }
 
-        public void SelectBranch(int branchId)
+        public void SelectBranch(Branch branch)
         {
-            CurrentBranchId = branchId;
+            CurrentBranch = branch;
         }
 
         public void OpenBranchScene()

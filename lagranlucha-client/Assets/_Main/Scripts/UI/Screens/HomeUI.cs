@@ -27,7 +27,7 @@ namespace LaGranLucha.UI
 
         public void CustomizeOrder()
         {
-            laGranLuchaManager.OpenShoppingScene();
+            laGranLuchaManager.OpenBranchScene();
             gameObject.SetActive(false);
         }
 

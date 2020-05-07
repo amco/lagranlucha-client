@@ -17,6 +17,11 @@ namespace LaGranLucha.UI
 
         #region BEHAVIORS
 
+        private void Start()
+        {
+            shoppingCartManager.onCartUpdated += UpdateUI;
+        }
+
         private void OnDestroy()
         {
             shoppingCartManager.onCartUpdated -= UpdateUI;
@@ -24,7 +29,6 @@ namespace LaGranLucha.UI
 
         public void Initialize(Variant product)
         {
-            shoppingCartManager.onCartUpdated += UpdateUI;
             this.product = product;
             SetupUI();
         }
