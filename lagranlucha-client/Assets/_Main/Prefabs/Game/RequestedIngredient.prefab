@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8166ccb5365485aa154128049b08a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 4143866604206961925}
   icon: {fileID: 2107425994949655030}
   background: {fileID: 3078520833362036780}
   canvasGroup: {fileID: 6518597397504768685}

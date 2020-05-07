@@ -11,13 +11,14 @@ namespace LaGranLucha.Game
     {
         #region FIELDS
 
+        [SerializeField] private RectTransform rectTransform = null;
         [SerializeField] private Image icon = null;
         [SerializeField] private Image background = null;
         [SerializeField] private CanvasGroup canvasGroup = null;
 
         private Ingredient ingredient = null;
-
         private bool showing = false;
+        private Vector2 baseSizeDelta = Vector2.zero;
 
         #endregion
 
@@ -28,6 +29,11 @@ namespace LaGranLucha.Game
         #endregion
 
         #region BEHAVIORS
+
+        private void Awake()
+        {
+            baseSizeDelta = rectTransform.sizeDelta;
+        }
 
         public void SetIngredient(Ingredient ingredient)
         {
@@ -48,8 +54,8 @@ namespace LaGranLucha.Game
             if (!showing)
                 return;
 
-            canvasGroup.Hide();
-            transform.DOScale(Vector3.zero, 0.5f);
+            canvasGroup.DOFade(0, 0.3f);
+            rectTransform.DOSizeDelta(Vector2.zero, 0.5f).SetEase(Ease.OutBounce);
             showing = false;
         }
 
@@ -58,8 +64,8 @@ namespace LaGranLucha.Game
             if (showing)
                 return;
 
-            canvasGroup.Show();
-            transform.DOScale(Vector3.one, 0.5f);
+            canvasGroup.DOFade(1, 0.3f);
+            rectTransform.DOSizeDelta(baseSizeDelta, 0.5f);
             showing = true;
         }
 

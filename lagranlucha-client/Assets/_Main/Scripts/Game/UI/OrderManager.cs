@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
@@ -16,7 +17,7 @@ namespace LaGranLucha.Game
         [Inject] private GameManager gameManager = null;
 
         [SerializeField] private RoundsOrders roundOrder = null;
-        [SerializeField] private ShownIngredient[] hamburguerIngredients = null;
+        [SerializeField] private List<ShownIngredient> hamburguerIngredients = null;
         [SerializeField] private ShownIngredient friesIngredient = null;
         [SerializeField] private ShownIngredient drinkIngredient = null;
         [SerializeField] private TMP_Text shownName = null;
@@ -82,16 +83,19 @@ namespace LaGranLucha.Game
             if (ingredient == GetFriesIngredient())
             {
                 onFriesIngredientSubmit(ingredient);
+                friesIngredient.Hide();
                 completedFries = true;
             }
             else if (ingredient == GetDrinkIngredient())
             {
                 onDrinkIngredientSubmit(ingredient);
+                drinkIngredient.Hide();
                 completedDrink = true;
             }
             else if (ingredient == GetHamburguerIngredient(hamburguerStep))
             {
                 onHamburguerIngredientSubmit(ingredient);
+                hamburguerIngredients[hamburguerStep].Hide();
                 hamburguerStep++;
                 if (hamburguerStep >= order.HamburgerIngredientsCount)
                     completedHamburguer = true;
@@ -104,7 +108,6 @@ namespace LaGranLucha.Game
                 ShowFail();
             }
 
-            SetGraphics();
             if (OrderComplete)
                 CompletedOrder();
         }
@@ -118,6 +121,8 @@ namespace LaGranLucha.Game
         {
             hamburguerStep = 0;
             onHamburguerReset?.Invoke();
+            for (int i = 0; i < order.HamburgerIngredientsCount; i++)
+                hamburguerIngredients[i].Show();
         }
 
         private void CompletedOrder()
@@ -139,9 +144,9 @@ namespace LaGranLucha.Game
 
         private void SetGraphics()
         {
-            for (int i = 0; i < hamburguerIngredients.Length; i++)
+            for (int i = 0; i < hamburguerIngredients.Count; i++)
             {
-                Ingredient ingredient = GetHamburguerIngredient(hamburguerStep + i);
+                Ingredient ingredient = GetHamburguerIngredient(i);
                 hamburguerIngredients[i].SetIngredient(ingredient);
             }
 
