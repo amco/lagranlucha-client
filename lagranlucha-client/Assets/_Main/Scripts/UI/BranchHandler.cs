@@ -18,6 +18,7 @@ namespace LaGranLucha.UI
         private const string Divider = " - ";
 
         [Inject] private TimeManager timeManager;
+        [Inject] private BranchUI branchUI;
 
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI timeText;
@@ -38,6 +39,7 @@ namespace LaGranLucha.UI
         private void Awake()
         {
             selectButton = GetComponent<Button>();
+            selectButton.onClick.AddListener(() => branchUI.SelectBranch(branch));
         }
 
         public void Initialize(Branch branch)

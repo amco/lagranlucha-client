@@ -15,8 +15,8 @@ namespace LaGranLucha.Managers
 
         public const string PesosSign = "$";
 
-        [Inject] private BranchManager branchManager;
         [Inject] private APIManager apiManager;
+        [Inject] private LaGranLuchaManager laGranLuchaManager;
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace LaGranLucha.Managers
                 order.LineItems.Add(orderProduct);
             }
 
-            order.BranchId = branchManager.CurrentBranch.Id;
+            order.BranchId = laGranLuchaManager.CurrentBranch.Id;
             apiManager.SendFakeRequestSucceded(order, null);
         }
 
@@ -61,8 +61,8 @@ namespace LaGranLucha.Managers
                         if (quantity <= default(int))
                         {
                             item.Quantity = default(int);
-                            onCartUpdated?.Invoke(item.Product.Id, item.Quantity);
                             RemoveItem(item.Product);
+                            onCartUpdated?.Invoke(item.Product.Id, item.Quantity);
                             break;
                         }
 
@@ -87,6 +87,11 @@ namespace LaGranLucha.Managers
                 subTotal += item.TotalPrice;
 
             return subTotal;
+        }
+
+        public void CleanShoppingCart()
+        {
+            Items.Clear();
         }
 
         private void RemoveItem(Variant product)

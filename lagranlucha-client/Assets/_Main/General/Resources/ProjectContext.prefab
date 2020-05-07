@@ -135,7 +135,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3997279412523526953}
   - component: {fileID: 1994682612702367706}
-  - component: {fileID: 3052641405079293689}
   - component: {fileID: 7440375600369537746}
   m_Layer: 0
   m_Name: APIManager
@@ -171,18 +170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   synchronizationInterval: 5
---- !u!114 &3052641405079293689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6248394094684116039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a568ebba9e2ab3b469356eb099bd14d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7440375600369537746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - {fileID: 1994682612702367706}
-  - {fileID: 3052641405079293689}
   _identifier: 
   _useSceneContext: 0
   _context: {fileID: 3493425623585946174}
@@ -310,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b3ad9ad16f84058a1aa7bd713acc50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clockFormat: 0
+  clockFormat: 1
 --- !u!114 &588860281656746890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,5 +313,5 @@ MonoBehaviour:
   - {fileID: 2299073595733770051}
   _identifier: 
   _useSceneContext: 0
-  _context: {fileID: 0}
+  _context: {fileID: 3493425623585946174}
   _bindType: 0
