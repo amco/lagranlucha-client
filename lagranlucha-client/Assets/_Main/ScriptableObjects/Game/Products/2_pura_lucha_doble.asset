@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ad0c68107b1426fbb9db58306d650c, type: 3}
+  m_Name: 2_pura_lucha_doble
+  m_EditorClassIdentifier: 
+  name: Pura Lucha Doble
+  ingredients:
+  - {fileID: 11400000, guid: 59d0369508e154f13ad32240f022dd18, type: 2}
+  - {fileID: 11400000, guid: 15d4ce9af9a7e4c81a3e1e3223fe785a, type: 2}
+  - {fileID: 11400000, guid: 9e80fddb5ffdc43ea91a3c5d996e6c2a, type: 2}
+  - {fileID: 11400000, guid: f381bd47199074913ad1d9aac4df3004, type: 2}
+  - {fileID: 11400000, guid: 9e80fddb5ffdc43ea91a3c5d996e6c2a, type: 2}
+  - {fileID: 11400000, guid: f381bd47199074913ad1d9aac4df3004, type: 2}
+  - {fileID: 11400000, guid: e656d0f2248e34321813e194ae38650d, type: 2}
+  points: 10
+  delayedPoints: 8
+  estimatedTime: 3

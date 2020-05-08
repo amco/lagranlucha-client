@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ad0c68107b1426fbb9db58306d650c, type: 3}
+  m_Name: 3_mucha_lucha
+  m_EditorClassIdentifier: 
+  name: Mucha Lucha
+  ingredients:
+  - {fileID: 11400000, guid: 59d0369508e154f13ad32240f022dd18, type: 2}
+  - {fileID: 11400000, guid: 9632833000fbd4e658e6a8e78072e89d, type: 2}
+  - {fileID: 11400000, guid: 405309dc5eae64deb8d9ffd28b369904, type: 2}
+  - {fileID: 11400000, guid: bb83da54665864d12a3e84665e2761c0, type: 2}
+  - {fileID: 11400000, guid: 9e80fddb5ffdc43ea91a3c5d996e6c2a, type: 2}
+  - {fileID: 11400000, guid: f381bd47199074913ad1d9aac4df3004, type: 2}
+  - {fileID: 11400000, guid: 3fc905f6402dd4f1c8a65a10fbbb2a4b, type: 2}
+  - {fileID: 11400000, guid: 65aac772a2f30439e81f2d9793b1ab76, type: 2}
+  - {fileID: 11400000, guid: 085489b4aabf04e37bd5c212d48b7803, type: 2}
+  - {fileID: 11400000, guid: e656d0f2248e34321813e194ae38650d, type: 2}
+  points: 15
+  delayedPoints: 12
+  estimatedTime: 4

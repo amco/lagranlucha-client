@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523989cedd3df452ba0c7f3b8be74ad6, type: 3}
+  m_Name: 9_tomato
+  m_EditorClassIdentifier: 
+  ingredientSteps:
+  - icon: {fileID: 21300000, guid: ad2b2e36cbd4045ec82ebc701781cc59, type: 3}
+    preparationTime: 0.5
+    preparationSound: {fileID: 0}
+  - icon: {fileID: 21300000, guid: 116e82a14f0f24d228a3cd4f53265e3e, type: 3}
+    preparationTime: 0.5
+    preparationSound: {fileID: 0}
+  gameImage: {fileID: 21300000, guid: 134cb0a68a12a47c0bee052277f1f897, type: 3}

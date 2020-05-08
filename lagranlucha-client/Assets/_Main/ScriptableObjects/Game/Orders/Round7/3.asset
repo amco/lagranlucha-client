@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb800c7da4b154dd087e62b6dc1f5ed5, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  hamburger:
+  - {fileID: 11400000, guid: d14acd3afc492487fbf18f797bb06f86, type: 2}
+  fries:
+  - {fileID: 11400000, guid: ee25d06c6197c419992c55aee08b36da, type: 2}
+  drink:
+  - {fileID: 11400000, guid: 02e0f98a1c761491e88f0e1d716361bf, type: 2}
+  - {fileID: 11400000, guid: 4e46b0e880727463eab7c478a0b76bfa, type: 2}
+  - {fileID: 11400000, guid: 50b1a569a2fde471db5ee6a795e11ef3, type: 2}
