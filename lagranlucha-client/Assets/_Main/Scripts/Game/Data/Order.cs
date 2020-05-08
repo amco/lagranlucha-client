@@ -14,11 +14,11 @@ namespace LaGranLucha.Game
         private const string ThreeProductsFormat = "Combo";
         private static readonly string[] ProductNameFormats = new string[] { string.Empty, OneProductFormat, TwoProductsFormat, ThreeProductsFormat };
 
-        [SerializeField] private List<Product> hamburguer = null;
+        [SerializeField] private List<Product> hamburger = null;
         [SerializeField] private List<Product> fries = null;
         [SerializeField] private List<Product> drink = null;
 
-        private Product selectedHamburguer = null;
+        private Product selectedHamburger = null;
         private Product selectedFries = null;
         private Product selectedDrink = null;
 
@@ -26,17 +26,17 @@ namespace LaGranLucha.Game
 
         #region PROPERTIES
 
-        public Product Hamburguer { get => selectedHamburguer; }
+        public Product Hamburger { get => selectedHamburger; }
         public Product Fries { get => selectedFries; }
         public Product Drink { get => selectedDrink; }
-        public bool HaveHamburger { get => selectedHamburguer != null; }
+        public bool HaveHamburger { get => selectedHamburger != null; }
         public bool HaveFries { get => selectedFries != null; }
         public bool HaveDrink { get => selectedDrink != null; }
-        public int HamburgerIngredientsCount { get => selectedHamburguer != null ? selectedHamburguer.Ingredients.Count : 0; }
-        public int HamburguerScore { get => HaveHamburger ? selectedHamburguer.Points : 0; }
+        public int HamburgerIngredientsCount { get => selectedHamburger != null ? selectedHamburger.Ingredients.Count : 0; }
+        public int HamburgerScore { get => HaveHamburger ? selectedHamburger.Points : 0; }
         public int FriesScore { get => HaveFries ? selectedFries.Points : 0; }
         public int DrinkScore { get => HaveDrink ? selectedDrink.Points : 0; }
-        public int DelayedHamburguerScore { get => HaveHamburger ? selectedHamburguer.DelayedPoints : 0; }
+        public int DelayedHamburgerScore { get => HaveHamburger ? selectedHamburger.DelayedPoints : 0; }
         public int DelayedFriesScore { get => HaveFries ? selectedFries.DelayedPoints : 0; }
         public int DelayedDrinkScore { get => HaveDrink ? selectedDrink.DelayedPoints : 0; }
         public string OrderName
@@ -45,7 +45,7 @@ namespace LaGranLucha.Game
             {
                 List<string> names = new List<string>();
                 if (HaveHamburger)
-                    names.Add(selectedHamburguer.Name);
+                    names.Add(selectedHamburger.Name);
 
                 if (HaveFries)
                     names.Add(selectedFries.Name);
@@ -62,7 +62,7 @@ namespace LaGranLucha.Game
             get
             {
                 int points = 0;
-                points += HamburguerScore;
+                points += HamburgerScore;
                 points += FriesScore;
                 points += DrinkScore;
                 return points;
@@ -74,19 +74,19 @@ namespace LaGranLucha.Game
             get
             {
                 int points = 0;
-                points += DelayedHamburguerScore;
+                points += DelayedHamburgerScore;
                 points += DelayedFriesScore;
                 points += DelayedDrinkScore;
                 return points;
             }
         }
-        
+
         public float BarTime
         {
             get
             {
                 float estimatedTime = 0;
-                estimatedTime += HaveHamburger ? selectedHamburguer.EstimatedTime : 0;
+                estimatedTime += HaveHamburger ? selectedHamburger.EstimatedTime : 0;
                 estimatedTime += HaveFries ? selectedFries.EstimatedTime : 0;
                 estimatedTime += HaveDrink ? selectedDrink.EstimatedTime : 0;
                 return estimatedTime;
@@ -99,7 +99,7 @@ namespace LaGranLucha.Game
 
         public void GetRandomElements()
         {
-            selectedHamburguer = hamburguer.Count > 0 ? hamburguer[Random.Range(0, hamburguer.Count)] : null;
+            selectedHamburger = hamburger.Count > 0 ? hamburger[Random.Range(0, hamburger.Count)] : null;
             selectedFries = fries.Count > 0 ? fries[Random.Range(0, fries.Count)] : null;
             selectedDrink = drink.Count > 0 ? drink[Random.Range(0, drink.Count)] : null;
         }

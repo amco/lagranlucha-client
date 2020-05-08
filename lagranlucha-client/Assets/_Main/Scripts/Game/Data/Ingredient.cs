@@ -11,7 +11,7 @@ namespace LaGranLucha.Game
 
         [SerializeField] private IngredientStep[] ingredientSteps = null;
         [SerializeField] private Sprite gameImage = null;
-        [SerializeField] private bool isHamburguerIngredient = true;
+        [SerializeField] private bool isHamburgerIngredient = true;
 
         #endregion
 
@@ -19,7 +19,7 @@ namespace LaGranLucha.Game
 
         public IngredientStep[] IngredientSteps { get => ingredientSteps; }
         public Sprite GameImage { get => gameImage; }
-        public bool IsHamburguerIngredient { get => isHamburguerIngredient; }
+        public bool IsHamburgerIngredient { get => isHamburgerIngredient; }
 
         #endregion
     }

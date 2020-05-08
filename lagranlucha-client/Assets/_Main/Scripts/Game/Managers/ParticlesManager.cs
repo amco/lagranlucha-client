@@ -70,23 +70,23 @@ namespace LaGranLucha.Game
         private void SetAnimation(GameObject gameObject, Vector3 recieverPosition, TweenCallback onEnd)
         {
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(InitialImpulseTween());
-            sequence.Append(GoToRecieverTween(recieverPosition));
-            sequence.Insert(0, ScaleTween());
+            sequence.Append(InitialImpulseTween(gameObject));
+            sequence.Append(GoToRecieverTween(gameObject, recieverPosition));
+            sequence.Insert(0, ScaleTween(gameObject));
             sequence.OnComplete(onEnd);
         }
 
-        private Tween InitialImpulseTween()
+        private Tween InitialImpulseTween(GameObject gameObject)
         {
             return gameObject.transform.DOMove(RandomImpulse(), InitialImpulseDuration).SetRelative().SetEase(Ease.OutCubic);
         }
 
-        private Tween GoToRecieverTween(Vector3 recieverPosition)
+        private Tween GoToRecieverTween(GameObject gameObject, Vector3 recieverPosition)
         {
             return gameObject.transform.DOMove(recieverPosition, GoToRecieverDuration).SetEase(Ease.InCubic);
         }
 
-        private Tween ScaleTween()
+        private Tween ScaleTween(GameObject gameObject)
         {
             return gameObject.transform.DOScale(gameObject.transform.localScale, TotalParticleDuration).From(Vector3.zero).SetEase(tweenScaleEase);
         }

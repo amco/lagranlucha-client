@@ -17,7 +17,7 @@ namespace LaGranLucha.Game
         [Inject] private OrderManager orderManager = null;
 
         [SerializeField] private CanvasGroup resultScreen = null;
-        [SerializeField] private TMP_Text hamburguerScore = null;
+        [SerializeField] private TMP_Text hamburgerScore = null;
         [SerializeField] private TMP_Text friesScore = null;
         [SerializeField] private TMP_Text drinkScore = null;
         [SerializeField] private TMP_Text totalScore = null;
@@ -44,9 +44,9 @@ namespace LaGranLucha.Game
 
         private void ShowRoundScore()
         {
-            hamburguerScore.text = friesScore.text = drinkScore.text = default(int).ToString();
+            hamburgerScore.text = friesScore.text = drinkScore.text = default(int).ToString();
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(IncreaseNumberTween(hamburguerScore, orderManager.ThisRoundHamburguersScore));
+            sequence.Append(IncreaseNumberTween(hamburgerScore, orderManager.ThisRoundHamburgersScore));
             sequence.Append(IncreaseNumberTween(friesScore, orderManager.ThisRoundFriesScore));
             sequence.Append(IncreaseNumberTween(drinkScore, orderManager.ThisRoundDrinksScore));
             sequence.Append(IncreaseNumberTween(totalScore, orderManager.ThisRoundTotalScore));

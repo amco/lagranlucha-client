@@ -12,16 +12,19 @@ namespace LaGranLucha.Game
 
         private const float TrayMovementDuration = 0.5f;
         private const float Delay = 1f;
+        private const int FirstChild = 0;
+        private const int SecondChild = 1;
+        private const int ThirdChild = 2;
 
         [Inject] private OrderManager orderManager = null;
         [Inject] private GameManager gameManager = null;
 
-        [SerializeField] private Transform withHamburguerContainer = null;
-        [SerializeField] private Transform noHamburguerContainer = null;
+        [SerializeField] private Transform withHamburgerContainer = null;
+        [SerializeField] private Transform noHamburgerContainer = null;
         [SerializeField] private Transform onlyOneContainer = null;
         [SerializeField] private GameIngredient gameIngredientPrefab = null;
 
-        private Transform hamburguerContainer = null;
+        private Transform hamburgerContainer = null;
         private Transform friesContainer = null;
         private Transform drinkContainer = null;
         private RectTransform rectTransform = null;
@@ -41,22 +44,22 @@ namespace LaGranLucha.Game
         {
             rectTransform = GetComponent<RectTransform>();
             startPosition = rectTransform.anchoredPosition;
-            orderManager.onHamburguerIngredientSubmit += SendHamburguerIngredient;
+            orderManager.onHamburgerIngredientSubmit += SendHamburgerIngredient;
             orderManager.onFriesIngredientSubmit += SendFriesIngredient;
             orderManager.onDrinkIngredientSubmit += SendDrinkIngredient;
             orderManager.onOrderCompleted += SendTrayToSide;
-            orderManager.onHamburguerReset += Resethamburguer;
+            orderManager.onHamburgerReset += Resethamburger;
             orderManager.onNewOrderStart += OrderStart;
             gameManager.onRoundStart += StartRound;
         }
 
         private void OnDestroy()
         {
-            orderManager.onHamburguerIngredientSubmit -= SendHamburguerIngredient;
+            orderManager.onHamburgerIngredientSubmit -= SendHamburgerIngredient;
             orderManager.onFriesIngredientSubmit -= SendFriesIngredient;
             orderManager.onDrinkIngredientSubmit -= SendDrinkIngredient;
             orderManager.onOrderCompleted -= SendTrayToSide;
-            orderManager.onHamburguerReset -= Resethamburguer;
+            orderManager.onHamburgerReset -= Resethamburger;
             orderManager.onNewOrderStart -= OrderStart;
             gameManager.onRoundStart -= StartRound;
         }
@@ -70,21 +73,21 @@ namespace LaGranLucha.Game
         {
             if (order.HaveHamburger && (order.HaveDrink || order.HaveFries))
             {
-                friesContainer = withHamburguerContainer.GetChild(0);
-                drinkContainer = withHamburguerContainer.GetChild(1);
-                hamburguerContainer = withHamburguerContainer.GetChild(2);
+                friesContainer = withHamburgerContainer.GetChild(FirstChild);
+                drinkContainer = withHamburgerContainer.GetChild(SecondChild);
+                hamburgerContainer = withHamburgerContainer.GetChild(ThirdChild);
             }
             else if (order.HaveDrink && order.HaveFries)
             {
-                friesContainer = noHamburguerContainer.GetChild(0);
-                drinkContainer = noHamburguerContainer.GetChild(1);
-                hamburguerContainer = null;
+                friesContainer = noHamburgerContainer.GetChild(FirstChild);
+                drinkContainer = noHamburgerContainer.GetChild(SecondChild);
+                hamburgerContainer = null;
             }
             else
             {
-                friesContainer = onlyOneContainer.GetChild(0);
-                drinkContainer = onlyOneContainer.GetChild(1);
-                hamburguerContainer = onlyOneContainer.GetChild(2);
+                friesContainer = onlyOneContainer.GetChild(FirstChild);
+                drinkContainer = onlyOneContainer.GetChild(SecondChild);
+                hamburgerContainer = onlyOneContainer.GetChild(ThirdChild);
             }
         }
 
@@ -93,17 +96,17 @@ namespace LaGranLucha.Game
             rectTransform.DOAnchorPosX(Screen.width, TrayMovementDuration).SetDelay(Delay).SetEase(Ease.InBack).OnComplete(CleanOrder);
         }
 
-        private void Resethamburguer()
+        private void Resethamburger()
         {
-            if (hamburguerContainer != null)
-                foreach (Transform child in hamburguerContainer)
+            if (hamburgerContainer != null)
+                foreach (Transform child in hamburgerContainer)
                     GameObject.Destroy(child.gameObject);
         }
 
         private void CleanOrder()
         {
-            if (hamburguerContainer != null)
-                foreach (Transform child in hamburguerContainer)
+            if (hamburgerContainer != null)
+                foreach (Transform child in hamburgerContainer)
                     GameObject.Destroy(child.gameObject);
 
             if (friesContainer != null)
@@ -125,9 +128,9 @@ namespace LaGranLucha.Game
             rectTransform.DOAnchorPosX(-Screen.width, TrayMovementDuration).From().SetEase(Ease.OutBack);
         }
 
-        private void SendHamburguerIngredient(Ingredient ingredient)
+        private void SendHamburgerIngredient(Ingredient ingredient)
         {
-            NewIngredient(ingredient, hamburguerContainer);
+            NewIngredient(ingredient, hamburgerContainer);
         }
 
         private void SendFriesIngredient(Ingredient ingredient)

@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 1931469760751161931}
   - component: {fileID: 8196365906112335785}
   m_Layer: 5
-  m_Name: Hamburguer
+  m_Name: Hamburger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -719,7 +719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: stars
   startingValue: 0
-  preffix: 
+  prefix: 
   format: '{0:0.0}'
   remove: .0
   suffix: 
@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundOrder: {fileID: 2525622941722485889}
-  hamburguerIngredients:
+  hamburgerIngredients:
   - {fileID: 2835590469170680606}
   - {fileID: 87605932604977558}
   - {fileID: 8894932987573962331}
@@ -1444,7 +1444,7 @@ GameObject:
   - component: {fileID: 8104121341239004729}
   - component: {fileID: 3470567841944765612}
   m_Layer: 5
-  m_Name: HamburguerIngredients
+  m_Name: HamburgerIngredients
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2649,7 +2649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: timeRemaining
   startingValue: 60
-  preffix: 
+  prefix: 
   format: '{0:0.0}'
   remove: .0
   suffix: 
@@ -3723,7 +3723,7 @@ GameObject:
   - component: {fileID: 1030751449429721604}
   - component: {fileID: 1057811250324967872}
   m_Layer: 5
-  m_Name: Hamburguer
+  m_Name: Hamburger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4479,7 +4479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 101827094525975660}
   m_Layer: 0
-  m_Name: NoHamburguer
+  m_Name: NoHamburger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6157,7 +6157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultScreen: {fileID: 7297465133986497711}
-  hamburguerScore: {fileID: 7405170427472316586}
+  hamburgerScore: {fileID: 7405170427472316586}
   friesScore: {fileID: 1145940041830185353}
   drinkScore: {fileID: 3716711280904978357}
   totalScore: {fileID: 2272399918325824191}
@@ -6433,8 +6433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c581a998bf54640b551365694525ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  withHamburguerContainer: {fileID: 8449939956671912904}
-  noHamburguerContainer: {fileID: 101827094525975660}
+  withHamburgerContainer: {fileID: 8449939956671912904}
+  noHamburgerContainer: {fileID: 101827094525975660}
   onlyOneContainer: {fileID: 7603113668753393337}
   gameIngredientPrefab: {fileID: -143819672901310296, guid: da8e17a4b39bb4b1faaa4a061bb9718d,
     type: 3}
@@ -7020,7 +7020,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ROUND 1
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 153a75ee7bf35432db3af05c10c53e2c, type: 2}
   m_sharedMaterial: {fileID: -6251111994816705929, guid: 153a75ee7bf35432db3af05c10c53e2c,
@@ -7090,10 +7090,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 8699626598409687289}
-    characterCount: 7
+    characterCount: 1
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -7127,7 +7127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: round
   startingValue: 1
-  preffix: 'ROUND '
+  prefix: 
   format: '{0:0}'
   remove: .0
   suffix: 
@@ -7413,7 +7413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ROUND 0
+  m_text: Round 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 153a75ee7bf35432db3af05c10c53e2c, type: 2}
   m_sharedMaterial: {fileID: -6251111994816705929, guid: 153a75ee7bf35432db3af05c10c53e2c,
@@ -7520,7 +7520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: round
   startingValue: 0
-  preffix: 'ROUND '
+  prefix: 'Round '
   format: '{0:0}'
   remove: .0
   suffix: 
@@ -8037,7 +8037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8449939956671912904}
   m_Layer: 0
-  m_Name: WithHamburguer
+  m_Name: WithHamburger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

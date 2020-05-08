@@ -16,7 +16,7 @@ namespace LaGranLucha.Game
 
         [SerializeField] private string id = "";
         [SerializeField] private float startingValue = 0;
-        [SerializeField] private string preffix = "";
+        [SerializeField] private string prefix = "";
         [SerializeField] private string format = "{0:0.0}";
         [SerializeField] private string remove = ".0";
         [SerializeField] private string suffix = "";
@@ -33,7 +33,7 @@ namespace LaGranLucha.Game
         #region PROPERTIES
 
         public int IntValue { get => Mathf.RoundToInt(Value); }
-        public string ValueString { get => preffix + string.Format(format, Value).Replace(remove, string.Empty) + suffix; }
+        public string ValueString { get => prefix + string.Format(format, Value).Replace(remove, string.Empty) + suffix; }
         public float Value
         {
             get
@@ -51,7 +51,7 @@ namespace LaGranLucha.Game
                 values[id] = value;
             }
         }
-        
+
         private Action<float> OnValueChange
         {
             get

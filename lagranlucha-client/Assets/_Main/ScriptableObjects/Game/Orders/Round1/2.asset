@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb800c7da4b154dd087e62b6dc1f5ed5, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  hamburguer: []
+  hamburger: []
   fries:
   - {fileID: 11400000, guid: ee25d06c6197c419992c55aee08b36da, type: 2}
   drink: []
