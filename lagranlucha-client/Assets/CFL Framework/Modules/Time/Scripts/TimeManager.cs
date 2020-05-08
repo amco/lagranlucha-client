@@ -49,7 +49,7 @@ namespace CFLFramework.Time
 
         #region BEHAVIORS
 
-        private void Start()
+        private void Awake()
         {
             UpdateTime();
         }
@@ -94,7 +94,9 @@ namespace CFLFramework.Time
 
         private DateTime GetLocalTime()
         {
-            return DateTimeService.UtcNow;
+            TimeZoneInfo timeInfo = TimeZoneInfo.FindSystemTimeZoneById(TimeZoneInfo.Local.Id);
+            DateTime currentLocalDateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTimeService.UtcNow, timeInfo);
+            return currentLocalDateTime;
         }
 
         private DateTime GetWorldTime()
