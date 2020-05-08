@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 using DG.Tweening;
 using Zenject;
-using System;
 
 namespace LaGranLucha.Game
 {

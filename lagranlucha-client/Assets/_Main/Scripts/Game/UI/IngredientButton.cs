@@ -43,8 +43,7 @@ namespace LaGranLucha.Game
 
         private void IngredientPrepared()
         {
-            step++;
-            if (step >= ingredient.IngredientSteps.Length)
+            if (++step >= ingredient.IngredientSteps.Length)
                 SendIngredient();
 
             SetGraphics();

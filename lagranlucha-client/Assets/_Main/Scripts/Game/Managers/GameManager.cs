@@ -28,7 +28,6 @@ namespace LaGranLucha.Game
 
         #region BEHAVIORS
 
-
         private void OnEnable()
         {
             Initialize();

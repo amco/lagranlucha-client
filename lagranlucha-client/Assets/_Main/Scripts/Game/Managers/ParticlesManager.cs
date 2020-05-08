@@ -24,6 +24,12 @@ namespace LaGranLucha.Game
 
         #endregion
 
+        #region PROPERTIES
+
+        public float TotalParticleDuration { get => InitialImpulseDuration + GoToRecieverDuration; }
+
+        #endregion
+
         #region BEHAVIORS
 
         public void SpawnParticles(GameObject particlePrefab, NumberCounter reciever, Vector2 position, int amount = 1)
@@ -43,24 +49,46 @@ namespace LaGranLucha.Game
                 int amountToIncrease = (i == particlesToSpawn - 1) ? coinsRemaining : amountPerParticle;
                 coinsRemaining -= amountToIncrease;
                 GameObject particle = Instantiate<GameObject>(particlePrefab, position, Quaternion.identity, transform);
-                TweenCallback onEnd = () => { Destroy(particle.gameObject); reciever.Increase(amountToIncrease); audioManager.PlaySound(particlePopSound); };
-                SetAnimation(particle, reciever.transform.position, InitialImpulseDuration, onEnd);
+                TweenCallback onEnd = () => ParticleReachedReciever(particle, amountToIncrease, reciever);
+                SetAnimation(particle, reciever.transform.position, onEnd);
                 yield return new WaitForSeconds(spawnDelay);
             }
         }
 
-        private Vector2 RandomVector2()
+        private void ParticleReachedReciever(GameObject particle, int amountToIncrease, NumberCounter reciever)
         {
-            return new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
+            Destroy(particle);
+            reciever.Increase(amountToIncrease);
+            audioManager.PlaySound(particlePopSound);
         }
 
-        private void SetAnimation(GameObject gameObject, Vector3 position, float initialImpluseDuration, TweenCallback onEnd)
+        private Vector2 RandomImpulse()
+        {
+            return new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)) * InitialImpulse;
+        }
+
+        private void SetAnimation(GameObject gameObject, Vector3 recieverPosition, TweenCallback onEnd)
         {
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(gameObject.transform.DOMove(RandomVector2() * InitialImpulse, initialImpluseDuration).SetRelative().SetEase(Ease.OutCubic));
-            sequence.Append(gameObject.transform.DOMove(position, GoToRecieverDuration).SetEase(Ease.InCubic));
-            sequence.Insert(0, gameObject.transform.DOScale(gameObject.transform.localScale, initialImpluseDuration + GoToRecieverDuration).From(Vector3.zero).SetEase(tweenScaleEase));
+            sequence.Append(InitialImpulseTween());
+            sequence.Append(GoToRecieverTween(recieverPosition));
+            sequence.Insert(0, ScaleTween());
             sequence.OnComplete(onEnd);
+        }
+
+        private Tween InitialImpulseTween()
+        {
+            return gameObject.transform.DOMove(RandomImpulse(), InitialImpulseDuration).SetRelative().SetEase(Ease.OutCubic);
+        }
+
+        private Tween GoToRecieverTween(Vector3 recieverPosition)
+        {
+            return gameObject.transform.DOMove(recieverPosition, GoToRecieverDuration).SetEase(Ease.InCubic);
+        }
+
+        private Tween ScaleTween()
+        {
+            return gameObject.transform.DOScale(gameObject.transform.localScale, TotalParticleDuration).From(Vector3.zero).SetEase(tweenScaleEase);
         }
 
         #endregion

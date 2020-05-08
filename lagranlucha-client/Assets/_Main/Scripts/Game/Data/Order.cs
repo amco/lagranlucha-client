@@ -56,6 +56,7 @@ namespace LaGranLucha.Game
                 return string.Format(ProductNameFormats[names.Count], names.ToArray());
             }
         }
+
         public int OrderScore
         {
             get
@@ -67,6 +68,7 @@ namespace LaGranLucha.Game
                 return points;
             }
         }
+
         public int DelayedOrderScore
         {
             get
@@ -78,6 +80,7 @@ namespace LaGranLucha.Game
                 return points;
             }
         }
+        
         public float BarTime
         {
             get

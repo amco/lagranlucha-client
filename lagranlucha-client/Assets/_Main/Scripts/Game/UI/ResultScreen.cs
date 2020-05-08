@@ -46,10 +46,15 @@ namespace LaGranLucha.Game
         {
             hamburguerScore.text = friesScore.text = drinkScore.text = default(int).ToString();
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(DOTween.To(() => default(int), x => hamburguerScore.text = x.ToString(), orderManager.ThisRoundHamburguersScore, ShowScoreStepDuration).SetOptions(true));
-            sequence.Append(DOTween.To(() => default(int), x => friesScore.text = x.ToString(), orderManager.ThisRoundFriesScore, ShowScoreStepDuration).SetOptions(true));
-            sequence.Append(DOTween.To(() => default(int), x => drinkScore.text = x.ToString(), orderManager.ThisRoundDrinksScore, ShowScoreStepDuration).SetOptions(true));
-            sequence.Append(DOTween.To(() => default(int), x => totalScore.text = x.ToString(), orderManager.ThisRoundTotalScore, ShowScoreStepDuration).SetOptions(true));
+            sequence.Append(IncreaseNumberTween(hamburguerScore, orderManager.ThisRoundHamburguersScore));
+            sequence.Append(IncreaseNumberTween(friesScore, orderManager.ThisRoundFriesScore));
+            sequence.Append(IncreaseNumberTween(drinkScore, orderManager.ThisRoundDrinksScore));
+            sequence.Append(IncreaseNumberTween(totalScore, orderManager.ThisRoundTotalScore));
+        }
+
+        private Tween IncreaseNumberTween(TMP_Text text, float amount)
+        {
+            return DOTween.To(() => default(int), x => text.text = x.ToString(), amount, ShowScoreStepDuration).SetOptions(true);
         }
 
         #endregion
